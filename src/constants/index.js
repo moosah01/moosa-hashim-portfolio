@@ -8,12 +8,12 @@ import {
 } from "../assets/icons";
 
 export const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#about-me", label: "About Me" },
-  { href: "#my-skills", label: "My Skills" },
-  { href: "#professional-experience", label: "Professional Experience" },
-  { href: "#notable-projects", label: "Notable Projects" },
-  { href: "#contact-me", label: "Contact Me" },
+  { href: "#about", label: "About" },
+  { href: "#skills", label: "Skills" },
+  { href: "#qualifications", label: "Qualifications" },
+  { href: "#projects", label: "Projects" },
+  { href: "#connect", label: "Connect" },
+  { href: "#portfolio", label: "Portfolio" },
 ];
 
 export const statistics = [
