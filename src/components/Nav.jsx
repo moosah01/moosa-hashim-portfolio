@@ -34,7 +34,7 @@ const Nav = () => {
   return (
     <>
       {/* ----- Desktop Nav with Pill Style (visible md and up) ----- */}
-      <header className="fixed top-5 left-1/2 -translate-x-1/2 z-30 max-lg:hidden md:flex justify-center w-[90%] max-w-7xl bg-white/95 backdrop-blur rounded-full shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] px-10 py-4">
+      <header className="fixed top-5 left-1/2 -translate-x-1/2 z-30 max-lg:hidden bg-clip-padding md:flex justify-center w-[90%] max-w-7xl bg-white/95 backdrop-blur rounded-full shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] px-10 py-4">
         <nav className="flex justify-between items-center w-full">
           {/* Home Icon Button */}
           <a
@@ -68,7 +68,7 @@ const Nav = () => {
 
       {/* ----- Mobile Bottom Nav (only on md and below) ----- */}
       <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 md:hidden w-[92%]">
-        <div className="flex justify-between items-center bg-white/95 backdrop-blur shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] rounded-full px-6 py-3">
+        <div className="flex justify-between items-center bg-clip-padding bg-white/95 backdrop-blur shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] rounded-full px-6 py-3">
           {/* Home Button */}
           <a
             href="/"
@@ -106,7 +106,7 @@ const Nav = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="fixed bottom-24 left-4 right-4 z-50 p-6 mx-auto max-w-xl rounded-2xl bg-white/90 backdrop-blur shadow-2xl md:hidden"
+            className=" bg-clip-padding fixed bottom-24 left-4 right-4 z-50 p-6 mx-auto max-w-xl rounded-2xl bg-white/90 backdrop-blur shadow-2xl md:hidden"
           >
             <ul className="flex flex-col gap-3 font-montserrat">
               {navLinks.map((item) => (
