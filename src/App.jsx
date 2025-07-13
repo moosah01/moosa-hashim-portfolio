@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Nav from "./components/Nav";
 import Hero from "./sections/Hero";
+import Hero2 from "./sections/Hero2";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -9,9 +10,12 @@ function App() {
     <main className="relative w-full overflow-x-hidden">
       <Nav />
 
-      <section className="mt-20 py-20 bg-purple-300">
-        {" "}
+      <section>
         <Hero />
+      </section>
+      <div className="bg-pink-500">Hello</div>
+      <section className="bg-purple-300">
+        <Hero2 />
       </section>
       <section className="py-40 bg-black">
         <div className="flex flex-col gap-2 justify-between">

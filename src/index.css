@@ -90,20 +90,8 @@
 }
 
 @layer utilities {
-  .backdrop-blur-4xl {
-    --tw-backdrop-blur: blur(80px);
-    backdrop-filter: var(--tw-backdrop-blur) saturate(150%);
-    -webkit-backdrop-filter: var(--tw-backdrop-blur) saturate(150%);
-  }
-
-  /* 120px blur + 150% saturation + slight darken */
-  .backdrop-blur-6xl {
-    /* blur radius */
-    --tw-backdrop-blur: blur(160px);
-    /* apply blur + saturate + darken behind the element */
-    backdrop-filter: var(--tw-backdrop-blur) saturate(150%) brightness(0.85);
-    -webkit-backdrop-filter: var(--tw-backdrop-blur) saturate(150%)
-      brightness(0.85);
+  .max-w-8xl {
+    max-width: 96rem; /* 96rem = 1536px */
   }
 
   .padding {
