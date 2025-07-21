@@ -190,19 +190,19 @@
       transform: rotateZ(0deg);
     }
     15% {
-      transform: rotateZ(-6deg);
+      transform: rotateZ(-2deg);
     }
     20% {
-      transform: rotateZ(4deg);
+      transform: rotateZ(1.5deg);
     }
     25% {
-      transform: rotateZ(-3deg);
+      transform: rotateZ(-1deg);
     }
     30% {
-      transform: rotateZ(2deg);
+      transform: rotateZ(0.5deg);
     }
     35% {
-      transform: rotateZ(-1deg);
+      transform: rotateZ(-0.5deg);
     }
     40%,
     100% {
