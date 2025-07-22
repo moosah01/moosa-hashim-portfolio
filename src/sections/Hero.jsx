@@ -34,7 +34,7 @@ const Hero = () => (
         </a>
       </div>
 
-      {/* 2) Text + Buttons */}
+      {/* 2) Text Content */}
       <div className="order-2 md:order-none flex flex-col gap-6 max-md:flex-1">
         <h1 className="text-4xl font-bold font-manrope max-md:text-3xl max-md:text-center">
           Muhammad Moosa Hashim{" "}
@@ -55,7 +55,16 @@ const Hero = () => (
           other amazing libraries and frameworks!
         </p>
 
-        {/* CTA Buttons */}
+        {/* 3) Image - Mobile Only (appears after text, before buttons) */}
+        <div className="profile_img_mobile order-3 md:hidden flex-shrink-0 self-center">
+          <img
+            src={moosaImage}
+            alt="Moosa"
+            className="w-72 h-72 rounded-full object-cover shadow-2xl"
+          />
+        </div>
+
+        {/* 4) CTA Buttons */}
         <div className="order-4 md:order-none flex flex-row max-md:flex-col gap-4 mt-5 items-center justify-center lg:justify-start">
           <a
             href="#contact"
@@ -73,12 +82,12 @@ const Hero = () => (
         </div>
       </div>
 
-      {/* 3) Image */}
-      <div className="profile_img order-3 md:order-none flex-shrink-0">
+      {/* 5) Image - Desktop Only (appears on the right side) */}
+      <div className="profile_img order-5 md:order-none flex-shrink-0 hidden md:block">
         <img
           src={moosaImage}
           alt="Moosa"
-          className="h-96 w-96 max-md:w-72 max-md:h-72 rounded-full object-cover shadow-2xl"
+          className="h-96 w-96 rounded-full object-cover shadow-2xl"
         />
       </div>
     </div>
