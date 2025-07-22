@@ -22,7 +22,7 @@ export const statistics = [
   { value: "250k+", label: "Customers" },
 ];
 
-export const services = [
+export const services2 = [
   {
     imgURL: truckFast,
     label: "Free shipping",
@@ -76,4 +76,11 @@ export const socialMedia = [
   { src: facebook, alt: "facebook logo" },
   { src: twitter, alt: "twitter logo" },
   { src: instagram, alt: "instagram logo" },
+];
+
+export const services = [
+  "Build secure and scalable REST APIs for high-performance web apps",
+  "Develop real-time event-driven systems and pipelines",
+  "Deploy cloud-native applications and integrating 3rd-party services",
+  "Design cross-platform UIs focusing on clean architecture and responsive design",
 ];
