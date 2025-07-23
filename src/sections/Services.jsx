@@ -62,7 +62,7 @@ const Services = () => {
   ];
 
   return (
-    <section className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start py-12 px-4">
+    <section className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start py-12 px-4 gap-10">
       {/* Left: your illustration or photo */}
       {/* <div className="max-md:order-3  max-md:mt-10 md:block md:w-1/2">
         <img
@@ -72,7 +72,7 @@ const Services = () => {
         />
       </div> */}
 
-      <div className="max-md:order-3 max-md:mt-10 md:block md:w-1/2">
+      <div className="max-md:order-3 max-md:mt-10 mt-20 md:block md:w-1/2">
         <Lottie
           animationData={catProgrammer}
           loop={true}
@@ -112,7 +112,7 @@ const Services = () => {
           {services.map((text, idx) => (
             <li
               key={idx}
-              className="flex items-start text-sm font-manrope max-w-prose text-justify max-md:text-[16px]"
+              className="flex items-start text-md font-manrope max-w-prose text-justify max-md:text-[16px]"
             >
               <span className="mr-2">⚡</span>
               <p>{text}</p>
