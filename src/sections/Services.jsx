@@ -82,7 +82,7 @@ const Services = () => {
 
       {/* Right: heading, subtitle, icons, bullets */}
       <div className="w-full md:w-1/2 md:pl-12 text-left">
-        <h2 className="text-4xl font-bold mb-2 font-manrope max-md:text-center">
+        <h2 className="text-4xl font-bold mb-2 font-manrope max-md:text-center max-md:text-3xl">
           What I do
         </h2>
         <p className="uppercase text-sm tracking-wide mb-8 max-md:text-center font-montserrat">
