@@ -62,7 +62,7 @@ const Services = () => {
   ];
 
   return (
-    <section className="max-w-8xl mx-auto flex flex-col md:flex-row items-center md:items-start py-12 px-4 gap-10">
+    <section className=" w-[95%] max-w-8xl mx-auto flex flex-col md:flex-row items-center md:items-start py-12 px-4 gap-10">
       {/* Left: your illustration or photo */}
       {/* <div className="max-md:order-3  max-md:mt-10 md:block md:w-1/2">
         <img

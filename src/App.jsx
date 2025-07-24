@@ -2,6 +2,7 @@ import { useState } from "react";
 import Nav from "./components/Nav";
 import Hero from "./sections/Hero";
 import Services from "./sections/Services";
+import Education from "./sections/Education";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,6 +16,9 @@ function App() {
         </section>
         <section>
           <Services />
+        </section>
+        <section>
+          <Education />
         </section>
         <div className="bg-pink-500">Hello</div>
         <section className="py-40">
