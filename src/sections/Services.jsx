@@ -62,7 +62,7 @@ const Services = () => {
   ];
 
   return (
-    <section className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start py-12 px-4 gap-10">
+    <section className="max-w-8xl mx-auto flex flex-col md:flex-row items-center md:items-start py-12 px-4 gap-10">
       {/* Left: your illustration or photo */}
       {/* <div className="max-md:order-3  max-md:mt-10 md:block md:w-1/2">
         <img
@@ -86,7 +86,7 @@ const Services = () => {
           What I do
         </h2>
         <p className="uppercase text-sm tracking-wide mb-8 max-md:text-center font-montserrat">
-          Try my best to be better every day
+          Try to become a better version of myself every day
         </p>
 
         {/* Icon grid - properly centered */}
@@ -114,8 +114,8 @@ const Services = () => {
               key={idx}
               className="flex items-start text-md font-manrope max-w-prose text-justify max-md:text-[16px]"
             >
-              <span className="mr-2">⚡</span>
-              <p>{text}</p>
+              <span className="mr-2 py-2">⚡</span>
+              <p className="px-5">{text}</p>
             </li>
           ))}
         </ul>
