@@ -2,7 +2,8 @@ import React from "react";
 import moosaImage from "../assets/images/moosa.jpg";
 import Lottie from "lottie-react";
 import catProgrammer from "../assets/images/catProgrammer.json";
-
+const hoverGradient =
+  "hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500";
 import {
   FaNodeJs,
   FaJava,
@@ -98,7 +99,7 @@ const Services = () => {
                 key={idx}
                 className="group flex flex-col items-center w-16 hover:scale-115 transition ease-in-out duration-300"
               >
-                <Icon className="w-10 h-10 mb-1 group-hover:text-blue-400" />
+                <Icon className="w-10 h-10 mb-1 group-hover:text-blue-500" />
                 <span className="text-xs lowercase text-center text-slate-gray group-hover:text-black">
                   {tech.name}
                 </span>

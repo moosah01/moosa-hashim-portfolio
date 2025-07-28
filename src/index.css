@@ -49,6 +49,10 @@
   --color-error: #ef4444;
   --color-basic-text: #1e1e1e;
 
+  /* gradients */
+  --gradient-custom-color: 135deg, #7c3aed 0%, #a855f7 40%, #c084fc 75%,
+    #f0abfc 100%;
+
   /* Breakpoints */
   --breakpoint-wide: 1440px;
 
