@@ -1,17 +1,24 @@
+// src/components/EducationCard.jsx
+
 import React, { useEffect, useRef } from "react";
 import { FiExternalLink } from "react-icons/fi";
 
 const EducationCard = ({ data, isActive, onCardClick }) => {
   const cardRef = useRef(null);
 
-  // Whenever isActive flips to true, focus the card to trigger your focus-within styles
+  // Auto‐focus only on mobile when this card becomes active
   useEffect(() => {
-    if (isActive) {
+    if (!isActive) return;
+
+    // Check screen width at moment of activation
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
       cardRef.current?.focus({ preventScroll: true });
     }
   }, [isActive]);
 
   const handleCardClick = () => {
+    // On mobile, tapping the card expands
     if (window.innerWidth < 768) {
       onCardClick(data);
     }
@@ -66,16 +73,20 @@ const EducationCard = ({ data, isActive, onCardClick }) => {
           </h1>
           <h2 className="text-md md:text-2xl font-manrope">{data.degree}</h2>
           <p
-            className="text-sm md:text-base font-manrope text-slate-gray
-                        group-hover:text-black group-focus-within:text-black
-                        transition-colors duration-300 ease-in-out"
+            className="
+            text-sm md:text-base font-manrope text-slate-gray
+            group-hover:text-black group-focus-within:text-black
+            transition-colors duration-300 ease-in-out
+          "
           >
             {data.duration}
           </p>
           <p
-            className="text-sm md:text-base font-manrope text-slate-gray
-                        group-hover:text-black group-focus-within:text-black
-                        transition-colors duration-300 ease-in-out"
+            className="
+            text-sm md:text-base font-manrope text-slate-gray
+            group-hover:text-black group-focus-within:text-black
+            transition-colors duration-300 ease-in-out
+          "
           >
             {data.mainHighlight}
           </p>
@@ -83,14 +94,18 @@ const EducationCard = ({ data, isActive, onCardClick }) => {
             {data.highlights.map((h, i) => (
               <li
                 key={i}
-                className="flex items-start text-sm md:text-base font-manrope text-slate-gray
-                           transition-colors duration-300 ease-in-out"
+                className="
+                  flex items-start text-sm md:text-base font-manrope text-slate-gray
+                  transition-colors duration-300 ease-in-out
+                "
               >
                 <span className="mr-3 leading-tight">•</span>
                 <span
-                  className="leading-tight
-                                group-hover:text-black group-focus-within:text-black
-                                transition-colors duration-300 ease-in-out"
+                  className="
+                  leading-tight
+                  group-hover:text-black group-focus-within:text-black
+                  transition-colors duration-300 ease-in-out
+                "
                 >
                   {h}
                 </span>
@@ -104,13 +119,13 @@ const EducationCard = ({ data, isActive, onCardClick }) => {
       <div className="mt-4 w-full">
         <div
           className="
-            max-md:mx-auto h-1 w-[80%] bg-slate-800 rounded-full
-            transition-all duration-500
-            group-hover:w-full group-focus-within:w-full
-            group-hover:bg-blue-400 group-focus-within:bg-blue-400
-            group-hover:shadow-[0_0_15px_4px_rgba(59,130,246,0.6)]
-            group-focus-within:shadow-[0_0_15px_4px_rgba(59,130,246,0.6)]
-          "
+          max-md:mx-auto h-1 w-[80%] bg-slate-800 rounded-full
+          transition-all duration-500
+          group-hover:w-full group-focus-within:w-full
+          group-hover:bg-blue-400 group-focus-within:bg-blue-400
+          group-hover:shadow-[0_0_15px_4px_rgba(59,130,246,0.6)]
+          group-focus-within:shadow-[0_0_15px_4px_rgba(59,130,246,0.6)]
+        "
         />
       </div>
     </div>

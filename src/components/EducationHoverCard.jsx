@@ -1,134 +1,133 @@
-// src/components/EducationCard.jsx
+import React from "react";
+import { FiExternalLink, FiX } from "react-icons/fi";
+import { FaLinkedin } from "react-icons/fa";
 
-import React, { useEffect, useRef } from "react";
-import { FiExternalLink } from "react-icons/fi";
-
-const EducationCard = ({ data, isActive, onCardClick }) => {
-  const cardRef = useRef(null);
-
-  // Only auto-focus on mobile when this card becomes active
-  useEffect(() => {
-    if (!isActive) return;
-
-    // guard for mobile only
-    if (window.innerWidth < 768) {
-      cardRef.current?.focus({ preventScroll: true });
-    }
-  }, [isActive]);
-
-  const handleCardClick = () => {
-    if (window.innerWidth < 768) {
-      onCardClick(data);
-    }
-  };
-
-  const handleExpandClick = (e) => {
-    e.stopPropagation();
-    onCardClick(data);
-  };
+const EducationHoverCard = ({ data, isOpen, onClose }) => {
+  if (!isOpen || !data) return null;
 
   return (
-    <div
-      ref={cardRef}
-      data-education-card
-      tabIndex={0}
-      onClick={handleCardClick}
-      className={`
-        group relative py-6 px-2 rounded-3xl
-        transition-colors outline-none cursor-pointer
-        ${
-          isActive
-            ? "bg-gray-100 focus-within:bg-gray-100"
-            : "hover:bg-gray-100"
-        }
-      `}
-    >
-      {/* Expand button */}
-      <button
-        onClick={handleExpandClick}
-        className="
-          absolute top-4 right-4 flex items-center space-x-1
-          bg-white shadow-lg rounded-full border border-gray-200
-          hover:shadow-xl hover:bg-gray-50 transition-all p-2
-        "
-        title="Expand"
-      >
-        <FiExternalLink size={16} className="text-gray-600" />
-        <span className="text-sm text-gray-600">Expand</span>
-      </button>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* glassy backdrop */}
+      <div
+        className="absolute inset-0 bg-white/10 backdrop-filter backdrop-blur-lg"
+        onClick={onClose}
+      />
 
-      {/* Logo + Content */}
-      <div className="flex max-sm:flex-col gap-4">
-        <div className="flex-shrink-0">
-          <img
-            src={data.src}
-            alt={`${data.university} logo`}
-            className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover mx-auto md:mx-0"
-          />
-        </div>
-        <div className="flex-1 flex flex-col gap-2">
-          <h1 className="text-xl md:text-3xl font-bold font-manrope">
-            {data.university}
-          </h1>
-          <h2 className="text-md md:text-2xl font-manrope">{data.degree}</h2>
-          <p
-            className="
-            text-sm md:text-base font-manrope text-slate-gray
-            group-hover:text-black group-focus-within:text-black
-            transition-colors duration-300 ease-in-out
-          "
-          >
-            {data.duration}
-          </p>
-          <p
-            className="
-            text-sm md:text-base font-manrope text-slate-gray
-            group-hover:text-black group-focus-within:text-black
-            transition-colors duration-300 ease-in-out
-          "
-          >
-            {data.mainHighlight}
-          </p>
-          <ul className="mt-2 space-y-2 list-none">
-            {data.highlights.map((h, i) => (
-              <li
-                key={i}
-                className="
-                  flex items-start text-sm md:text-base font-manrope text-slate-gray
-                  transition-colors duration-300 ease-in-out
-                "
-              >
-                <span className="mr-3 leading-tight">•</span>
-                <span
-                  className="
-                  leading-tight
-                  group-hover:text-black group-focus-within:text-black
-                  transition-colors duration-300 ease-in-out
-                "
-                >
-                  {h}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      {/* Underline */}
-      <div className="mt-4 w-full">
-        <div
+      {/* modal card */}
+      <div className="relative bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+        {/* close button */}
+        <button
+          onClick={onClose}
+          title="Close"
           className="
-          max-md:mx-auto h-1 w-[80%] bg-slate-800 rounded-full
-          transition-all duration-500
-          group-hover:w-full group-focus-within:w-full
-          group-hover:bg-blue-400 group-focus-within:bg-blue-400
-          group-hover:shadow-[0_0_15px_4px_rgba(59,130,246,0.6)]
-          group-focus-within:shadow-[0_0_15px_4px_rgba(59,130,246,0.6)]
-        "
-        />
+            absolute top-4 right-4 z-10 p-2
+            bg-white/80 backdrop-filter backdrop-blur-sm
+            rounded-full shadow hover:bg-white transition-colors
+          "
+        >
+          <FiX size={20} className="text-gray-800" />
+        </button>
+
+        <div className="p-6">
+          {/* header */}
+          <div className="flex items-start justify-between mb-6">
+            <div className="flex-1 pr-8">
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                {data.degree}
+              </h1>
+              <div className="flex items-center gap-3 mb-4">
+                <img
+                  src={data.src}
+                  alt={`${data.university} logo`}
+                  className="w-8 h-8 rounded"
+                />
+                <span className="text-lg font-medium text-gray-700">
+                  {data.university}
+                </span>
+              </div>
+
+              {/* action buttons */}
+              <div className="flex gap-3 mb-4">
+                <a
+                  href={data.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white
+                    rounded-lg hover:bg-indigo-700 transition-colors text-sm font-medium
+                  "
+                >
+                  <FiExternalLink size={16} />
+                  Website
+                </a>
+                <a
+                  href={data.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    flex items-center gap-2 px-4 py-2 bg-blue-600 text-white
+                    rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium
+                  "
+                >
+                  <FaLinkedin size={16} />
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+
+            {/* CGPA badge */}
+            {data.cgpa && (
+              <div className="flex-shrink-0 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap">
+                CGPA – {data.cgpa}
+              </div>
+            )}
+          </div>
+
+          {/* session attended */}
+          {data.session && (
+            <div className="bg-gray-50 rounded-lg p-4 mb-6">
+              <h3 className="font-semibold text-gray-900 mb-1">
+                Session Attended
+              </h3>
+              <p className="text-gray-600">{data.session}</p>
+            </div>
+          )}
+
+          {/* about */}
+          {data.description && (
+            <div className="mb-6">
+              <h3 className="font-semibold text-gray-900 mb-3">About</h3>
+              <p className="text-gray-600 leading-relaxed text-sm">
+                {data.description}
+              </p>
+            </div>
+          )}
+
+          {/* main highlight */}
+          {data.mainHighlight && (
+            <div className="mb-6 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+              <p className="text-blue-800 font-medium">{data.mainHighlight}</p>
+            </div>
+          )}
+
+          {/* achievements */}
+          {data.highlights?.length > 0 && (
+            <div className="mb-6">
+              <h3 className="font-semibold text-gray-900 mb-3">Achievements</h3>
+              <ul className="space-y-2">
+                {data.highlights.map((h, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
+                    <span className="text-gray-600 text-sm">{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
-export default EducationCard;
+export default EducationHoverCard;
