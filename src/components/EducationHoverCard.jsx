@@ -22,10 +22,13 @@ const EducationHoverCard = ({ data, isOpen, onClose }) => {
           className="
             absolute top-4 right-4 z-10 p-2
             bg-white/80 backdrop-filter backdrop-blur-sm
-            rounded-full shadow hover:bg-white transition-colors
-          "
+            rounded-full
+            shadow-md
+            transform transition-all duration-200 ease-out
+            hover:shadow-xl hover:scale-110 group
+              "
         >
-          <FiX size={20} className="text-gray-800" />
+          <FiX size={20} className="text-gray-800 group-hover:text-blue-500" />
         </button>
 
         <div className="p-6">

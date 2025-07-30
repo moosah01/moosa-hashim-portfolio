@@ -10,6 +10,9 @@
   --font-manrope: "Manrope", sans-serif;
   --font-montserrat: "Montserrat", sans-serif;
   --font-palanquin: "Palanquin", sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+    "Segoe UI Emoji", sans-serif;
 
   /* Font sizes & line heights */
   --text-xs: 12px;

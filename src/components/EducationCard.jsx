@@ -1,28 +1,22 @@
-// src/components/EducationCard.jsx
-
 import React, { useEffect, useRef } from "react";
 import { FiExternalLink } from "react-icons/fi";
 
-const EducationCard = ({ data, isActive, onCardClick }) => {
+const EducationCard = ({ data, isActive, onCardClick, index }) => {
   const cardRef = useRef(null);
 
   // Auto‐focus only on mobile when this card becomes active
   useEffect(() => {
     if (!isActive) return;
-
-    // Check screen width at moment of activation
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) {
+    if (window.innerWidth < 768) {
       cardRef.current?.focus({ preventScroll: true });
     }
   }, [isActive]);
 
-  const handleCardClick = () => {
-    // On mobile, tapping the card expands
-    if (window.innerWidth < 768) {
-      onCardClick(data);
-    }
-  };
+  // const handleCardClick = () => {
+  //   if (window.innerWidth < 768) {
+  //     onCardClick(data);
+  //   }
+  // };
 
   const handleExpandClick = (e) => {
     e.stopPropagation();
@@ -33,14 +27,13 @@ const EducationCard = ({ data, isActive, onCardClick }) => {
     <div
       ref={cardRef}
       data-education-card
+      data-index={index}
       tabIndex={0}
-      onClick={handleCardClick}
+      // onClick={handleCardClick}
       className={`
-        group relative py-6 px-2 rounded-3xl transition-colors outline-none cursor-pointer
+        group relative py-6 px-2 rounded-3xl transition-colors outline-none cursor-pointer hover:bg-gray-100
         ${
-          isActive
-            ? "bg-gray-100 focus-within:bg-gray-100"
-            : "hover:bg-gray-100"
+          isActive ? "focus-within:bg-gray-100 text-black" : "hover:bg-gray-100"
         }
       `}
     >
@@ -50,12 +43,14 @@ const EducationCard = ({ data, isActive, onCardClick }) => {
         className="
           absolute top-4 right-4 flex items-center space-x-1
           bg-white shadow-lg rounded-full border border-gray-200
-          hover:shadow-xl hover:bg-gray-50 transition-all p-2
+          hover:shadow-xl hover:bg-gray-50 transition-all p-2 
         "
         title="Expand"
       >
         <FiExternalLink size={16} className="text-gray-600" />
-        <span className="text-sm text-gray-600">Expand</span>
+        <span className="text-sm text-slate-gray hover:text-blue-500">
+          Expand
+        </span>
       </button>
 
       {/* Logo + Content */}
@@ -74,19 +69,19 @@ const EducationCard = ({ data, isActive, onCardClick }) => {
           <h2 className="text-md md:text-2xl font-manrope">{data.degree}</h2>
           <p
             className="
-            text-sm md:text-base font-manrope text-slate-gray
-            group-hover:text-black group-focus-within:text-black
-            transition-colors duration-300 ease-in-out
-          "
+              text-sm md:text-base font-manrope text-slate-gray
+              group-hover:text-black group-focus-within:text-black
+              transition-colors duration-300 ease-in-out
+            "
           >
             {data.duration}
           </p>
           <p
             className="
-            text-sm md:text-base font-manrope text-slate-gray
-            group-hover:text-black group-focus-within:text-black
-            transition-colors duration-300 ease-in-out
-          "
+              text-sm md:text-base font-manrope text-slate-gray
+              group-hover:text-black group-focus-within:text-black
+              transition-colors duration-300 ease-in-out
+            "
           >
             {data.mainHighlight}
           </p>
@@ -102,10 +97,10 @@ const EducationCard = ({ data, isActive, onCardClick }) => {
                 <span className="mr-3 leading-tight">•</span>
                 <span
                   className="
-                  leading-tight
-                  group-hover:text-black group-focus-within:text-black
-                  transition-colors duration-300 ease-in-out
-                "
+                    leading-tight
+                    group-hover:text-black group-focus-within:text-black
+                    transition-colors duration-300 ease-in-out
+                  "
                 >
                   {h}
                 </span>
@@ -116,16 +111,16 @@ const EducationCard = ({ data, isActive, onCardClick }) => {
       </div>
 
       {/* Underline */}
-      <div className="mt-4 w-full">
+      <div className="mt-10 w-full">
         <div
           className="
-          max-md:mx-auto h-1 w-[80%] bg-slate-800 rounded-full
-          transition-all duration-500
-          group-hover:w-full group-focus-within:w-full
-          group-hover:bg-blue-400 group-focus-within:bg-blue-400
-          group-hover:shadow-[0_0_15px_4px_rgba(59,130,246,0.6)]
-          group-focus-within:shadow-[0_0_15px_4px_rgba(59,130,246,0.6)]
-        "
+            max-md:mx-auto h-[1px] w-[70%] max-sm:w-[50%] bg-black rounded-full
+            transition-all duration-800
+            group-hover:w-full group-focus-within:w-full
+            group-hover:bg-blue-400 group-focus-within:bg-blue-400
+            group-hover:shadow-[0_0_15px_4px_rgba(59,130,246,0.6)]
+            group-focus-within:shadow-[0_0_15px_4px_rgba(59,130,246,0.6)]
+          "
         />
       </div>
     </div>

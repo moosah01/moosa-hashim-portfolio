@@ -5,33 +5,37 @@ import { education } from "../constants";
 
 const Education = () => {
   const [selected, setSelected] = useState(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(-1);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const cards = Array.from(
-        document.querySelectorAll("[data-education-card]")
-      );
+    // Keep a map of the latest intersection ratios
+    const ratioMap = {};
 
-      let best = { index: 0, ratio: -1 };
-      cards.forEach((card, idx) => {
-        const r = card.getBoundingClientRect();
-        const visible = Math.max(
-          0,
-          Math.min(window.innerHeight, r.bottom) - Math.max(0, r.top)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const idx = Number(entry.target.dataset.index);
+          ratioMap[idx] = entry.intersectionRatio;
+        });
+
+        // Pick the index with the highest ratio
+        const bestIdx = Object.keys(ratioMap).reduce(
+          (best, idx) => (ratioMap[idx] > ratioMap[best] ? idx : best),
+          Object.keys(ratioMap)[0]
         );
-        const ratio = visible / r.height;
-        if (ratio > best.ratio) {
-          best = { index: idx, ratio };
-        }
-      });
+        setActiveIndex(Number(bestIdx));
+      },
+      {
+        // Watch every 1% of visibility from 0% to 100%
+        threshold: Array.from({ length: 101 }, (_, i) => i / 100),
+      }
+    );
 
-      setActiveIndex(best.index);
-    };
+    // Observe all cards
+    const cards = document.querySelectorAll("[data-education-card]");
+    cards.forEach((card) => observer.observe(card));
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // run once on mount
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -44,6 +48,7 @@ const Education = () => {
         {education.map((edu, idx) => (
           <EducationCard
             key={idx}
+            index={idx}
             data={edu}
             isActive={idx === activeIndex}
             onCardClick={setSelected}

@@ -130,3 +130,60 @@ export const education = [
     ],
   },
 ];
+
+export const workExperience = [
+  {
+    company: "Techlogix",
+    role: "Software Engineer",
+    duration: "Sep 2023 – Present",
+    logo: ibaLogo,
+    color: "#1D4ED8", // Blue gradient
+    description:
+      "Managed Kafka messaging pipeline handling $5M+ in daily transactions. Integrated diverse systems using SOAP, REST, Apache Camel K, XSLT & Groovy. Migrated 700K+ customer profiles & streamlined Azure environments, reducing failure rates by 70% and cutting resource usage by 50%.",
+    highlights: [
+      "Kafka pipeline linking 200+ global banks",
+      "Reduced failure rates by 70% with robust integrations",
+      "Optimized Azure integrations cutting core & memory by 50%",
+    ],
+    gradient: {
+      from: "#1D4ED8",
+      to: "#3B82F6",
+    },
+  },
+  {
+    company: "Hilal Invest",
+    role: "Product Owner",
+    duration: "May 2022 – Nov 2022",
+    logo: ibaLogo,
+    color: "#DC2626", // Red gradient
+    description:
+      "Led the launch of Pakistan's first digital Islamic investment platform serving 70K+ users. Managed deliverables as Scrum Master and integrated 7 third-party AMCs while improving engagement by 30%.",
+    highlights: [
+      "Led launch of a first-of-its-kind investment platform",
+      "Integrated 7 third-party AMCs using Mural-based mapping",
+      "Boosted user engagement efficiency by 30%",
+    ],
+    gradient: {
+      from: "#2FBE9F", // teal from logo
+      to: "#153B59", // navy from logo
+    },
+  },
+  {
+    company: "Commuovere Tours",
+    role: "Cofounder & Head of Sales",
+    duration: "Oct 2020 – Feb 2022",
+    logo: ibaLogo,
+    color: "#EC4899", // Pink gradient
+    description:
+      "Co-founded and scaled a student-run travel agency generating PKR 8M+ in revenue, serving 1200+ clients. Oversaw operations, sales, and growth strategy.",
+    highlights: [
+      "Generated PKR 8M+ revenue with 1200+ clients",
+      "Led operations & sales for a student-run agency",
+      "Built brand presence in competitive travel industry",
+    ],
+    gradient: {
+      from: "#38BDF8", // sky blue
+      to: "#0EA5E9",
+    },
+  },
+];
