@@ -12,6 +12,7 @@ import {
   moosaImage,
   ibaLogo,
   nixorLogo,
+  dummyProject,
 } from "../assets/images";
 
 export const navLinks = [
@@ -185,5 +186,48 @@ export const workExperience = [
       from: "#38BDF8", // sky blue
       to: "#0EA5E9",
     },
+  },
+];
+
+export const projectData = [
+  {
+    id: 1,
+    title: "Hoops",
+    description: "A different kind of Social Media.",
+    imageUrl: dummyProject,
+    liveDemo: "https://hoops.live",
+    github: "https://github.com/yourname/hoops",
+  },
+  {
+    id: 2,
+    title: "Talent Hive",
+    description: "Shortlist 100s of resumes using a powerful AI.",
+    imageUrl: dummyProject,
+    liveDemo: null,
+    github: "https://github.com/yourname/talent-hive",
+  },
+  {
+    id: 3,
+    title: "Crick-Ex One",
+    description: "A beautiful Digital Cricket Scorebook.",
+    imageUrl: dummyProject,
+    liveDemo: "https://crickex.live",
+    github: null,
+  },
+  {
+    id: 4,
+    title: "Crick-Ex One",
+    description: "A beautiful Digital Cricket Scorebook.",
+    imageUrl: dummyProject,
+    liveDemo: "https://crickex.live",
+    github: null,
+  },
+  {
+    id: 5,
+    title: "Crick-Ex One",
+    description: "A beautiful Digital Cricket Scorebook.",
+    imageUrl: dummyProject,
+    liveDemo: "https://crickex.live",
+    github: null,
   },
 ];

@@ -4,6 +4,7 @@ import Hero from "./sections/Hero";
 import Services from "./sections/Services";
 import Education from "./sections/Education";
 import WorkExperience from "./sections/WorkExperience";
+import ProjectCardCarousel from "./sections/ProjectCarousel";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -23,6 +24,9 @@ function App() {
         </section>
         <section>
           <WorkExperience />
+        </section>
+        <section>
+          <ProjectCardCarousel />
         </section>
         <div className="bg-pink-500">Hello</div>
         <section className="py-40">
