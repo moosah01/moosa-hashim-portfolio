@@ -11,7 +11,7 @@ const WorkExperienceCard = ({ data, index }) => {
 
   return (
     <div
-      className="rounded-lg overflow-hidden shadow-2xl
+      className="rounded-lg overflow-hidden shadow-xl
                 flex flex-col relative h-[550px]"
     >
       {/* same height for all */}
