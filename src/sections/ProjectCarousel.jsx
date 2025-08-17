@@ -1,5 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import { motion } from "framer-motion";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // ⬅️ add this
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -9,35 +11,70 @@ import "swiper/css/navigation";
 import ProjectCard2 from "../components/ProjectCard2";
 import { projectData } from "../constants";
 
-import { Pagination } from "swiper/modules";
-
 export default function ProjectCardCarousel() {
   return (
-    <div>
-      <div className="flex flex-row flex-wrap justify-center gap-10">
-        {projectData.map((project, idx) => (
-          <ProjectCard2 data={project} />
-        ))}
-      </div>
-      {/* <div className="flex flex-wrap max-w-[992px] items-center justify-center">
+    <section
+      id="Featured"
+      className="w-full flex flex-col items-center select-none"
+    >
+      <h2 className="text-2xl font-bold">Featured Projects</h2>
+      <span className="text-sm opacity-80 mb-4">
+        Have a look at some of my highlighted projects
+      </span>
+
+      <div className="w-full max-w-[992px]">
         <Swiper
-          slidesPerView={4}
-          spaceBetween={30}
-          centeredSlides={true}
-          pagination={{
+          effect="coverflow"
+          grabCursor
+          centeredSlides
+          loop={false}
+          slidesPerView="auto"
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2.5,
+            slideShadows: false,
+          }}
+          pagination={{ el: ".swiper-pagination", clickable: true }}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
             clickable: true,
           }}
-          modules={[Pagination]}
-          loop={false}
-          className="mySwiper pt-0.5 pb-2 w-full overflow-x-hidden"
+          modules={[EffectCoverflow, Pagination, Navigation]}
+          className="swiper_container px-2 pt-2 pb-8 overflow-visible"
         >
           {projectData.map((project, idx) => (
-            <SwiperSlide>
-              <ProjectCard2 data={project} />
+            <SwiperSlide key={project?.id ?? idx} className="!w-auto !h-auto">
+              <motion.div
+                whileHover={{ scale: 1.06 }}
+                transition={{ duration: 0.18, ease: "easeOut" }}
+                className="relative z-[2] origin-center w-[320px] sm:w-[360px]"
+              >
+                <div className="rounded-2xl bg-white shadow-xl overflow-hidden">
+                  <ProjectCard2 data={project} />
+                </div>
+              </motion.div>
             </SwiperSlide>
           ))}
+
+          {/* controls row: prev • dots • next */}
+          <div className="slider-controller">
+            <div
+              className="swiper-button-prev slider-arrow"
+              aria-label="Previous"
+            >
+              <FaChevronLeft className="text-black" size={0.5} />
+            </div>
+
+            <div className="swiper-pagination" />
+            <div className="swiper-button-next slider-arrow" aria-label="Next">
+              <FaChevronRight className="text-black" size={0.5} />
+            </div>
+          </div>
         </Swiper>
-      </div> */}
-    </div>
+      </div>
+    </section>
   );
 }

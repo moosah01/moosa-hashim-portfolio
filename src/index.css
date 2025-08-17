@@ -97,6 +97,108 @@
 }
 
 @layer utilities {
+  /* container + slide sizing like the reference */
+  .swiper_container {
+    --swiper-theme-color: #000; /* active bullet color */
+    height: fit-content;
+    padding-top: 0.5rem !important;
+    padding-bottom: 2rem !important;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .swiper-slide {
+    width: fit-content !important;
+    height: fit-content !important;
+  }
+  .swiper-slide-shadow-left,
+  .swiper-slide-shadow-right {
+    display: none;
+  }
+
+  /* --- Controls row (prev • dots • next) --- */
+  .slider-controller {
+    position: relative;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+    gap: 0.75rem;
+  }
+
+  /* Arrows: transparent background, black icon */
+  .slider-controller .slider-arrow {
+    background: transparent !important; /* <- no white background */
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px; /* keeps hit area round */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000; /* react-icons inherit this */
+    cursor: pointer;
+    box-shadow: none !important; /* <- remove glow/shadow */
+    filter: none !important; /* <- remove drop-shadow */
+    outline: none;
+    -webkit-tap-highlight-color: transparent; /* mobile tap glow off */
+  }
+  /* Keep arrows in the row (not absolutely positioned) */
+  .slider-controller .swiper-button-prev,
+  .slider-controller .swiper-button-next {
+    position: static !important;
+    inset: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+  /* Remove Swiper’s default arrow glyphs */
+  .slider-controller .swiper-button-prev::after,
+  .slider-controller .swiper-button-next::after {
+    content: "" !important;
+  }
+  /* Disabled state from Swiper */
+  .slider-controller .swiper-button-prev.swiper-button-disabled,
+  .slider-controller .swiper-button-next.swiper-button-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  /* Optional hover feedback (still transparent) */
+  .slider-controller .slider-arrow:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  /* --- Dots in the same row, black --- */
+  .swiper-pagination {
+    width: auto !important;
+    position: static !important;
+    margin: 0 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: #000 !important; /* black bullets */
+    opacity: 0.25;
+    margin: 0 !important;
+  }
+  .swiper-pagination-bullet-active {
+    background: #000 !important; /* black active bullet */
+    opacity: 1;
+  }
+
+  /* Optional: keep the active slide above neighbors */
+  .swiper-slide-active {
+    z-index: 50 !important;
+  }
+
+  /* Responsive tweak like the reference */
+  @media (max-width: 1100px) {
+    .swiper_container {
+      max-width: 100%;
+    }
+  }
+
   .max-w-8xl {
     max-width: 88rem; /* 88rem = 1408px */
   }

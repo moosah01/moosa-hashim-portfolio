@@ -1,32 +1,22 @@
-// src/components/ProjectCard2.jsx
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
-import { motion } from "framer-motion";
 
-const MotionCard = motion.div;
 const fallbackImage = "https://placehold.co/600x400?text=Image+not+available";
 
-const ProjectCard2 = ({ data }) => {
+export default function ProjectCard2({ data }) {
   const [imgSrc, setImgSrc] = useState(data.imageUrl ?? fallbackImage);
 
   return (
-    <MotionCard
-      whileHover={{ scale: 1.08 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
-      className="rounded-lg overflow-hidden shadow-xl flex flex-col relative
-                 h-[400px] w-[400px] will-change-transform"
-    >
-      <div>
-        <img
-          src={imgSrc}
-          onError={() => setImgSrc(fallbackImage)}
-          alt={data.title}
-          className="h-64 w-full object-cover"
-        />
-      </div>
+    <div className="w-full flex flex-col">
+      {/* use contain to avoid cropping; rounded top to match card */}
+      <img
+        src={imgSrc}
+        onError={() => setImgSrc(fallbackImage)}
+        alt={data.title}
+        className="w-full aspect-[4/3] object-contain rounded-t-2xl"
+      />
 
-      {/* Content */}
       <div className="relative z-10 flex flex-col items-start gap-1 p-4">
         <h2 className="text-lg font-manrope font-extrabold leading-tight md:text-xl">
           {data.title}
@@ -58,8 +48,6 @@ const ProjectCard2 = ({ data }) => {
           )}
         </div>
       </div>
-    </MotionCard>
+    </div>
   );
-};
-
-export default ProjectCard2;
+}
