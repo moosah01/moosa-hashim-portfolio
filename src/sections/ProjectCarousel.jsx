@@ -27,7 +27,7 @@ export default function ProjectCardCarousel() {
           effect="coverflow"
           grabCursor
           centeredSlides
-          loop={false}
+          loop={true}
           slidesPerView="auto"
           coverflowEffect={{
             rotate: 0,
