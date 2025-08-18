@@ -5,6 +5,7 @@ import Services from "./sections/Services";
 import Education from "./sections/Education";
 import WorkExperience from "./sections/WorkExperience";
 import ProjectCardCarousel from "./sections/ProjectCarousel";
+import Contact from "./sections/Contact";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -13,37 +14,29 @@ function App() {
     <main className="relative w-full overflow-x-hidden">
       <Nav />
       <div className="flex flex-col gap-50 max-md:gap-25 py-7">
-        <section>
+        <section id="about" className="scroll-mt-4 lg:scroll-mt-32">
           <Hero />
         </section>
-        <section>
+
+        <section id="skills" className="scroll-mt-4 lg:scroll-mt-32">
           <Services />
         </section>
-        <section>
+
+        <section id="qualifications" className="scroll-mt-4 lg:scroll-mt-32">
           <Education />
         </section>
-        <section>
+
+        <section id="experience" className="scroll-mt-4 lg:scroll-mt-32">
           <WorkExperience />
         </section>
-        <section>
+
+        <section id="projects" className="scroll-mt-4 lg:scroll-mt-32">
           <ProjectCardCarousel />
         </section>
-        <div className="bg-pink-500">Hello</div>
-        <section className="py-40">
-          <div className="flex flex-col gap-2 justify-between">
-            <div className="text-black">Step 1</div>
-            <div className="text-black">Step 1</div>
-            <div className="text-black">Step 1</div>
-            <div className="text-black">Step 1</div>
-            <div className="text-black">Step 1</div>
-            <div className="text-black">Step 1</div>
-            <div className="text-black">Step 1</div>
-          </div>
+
+        <section id="connect" className="scroll-mt-4 lg:scroll-mt-32">
+          <Contact />
         </section>
-        <section className="py-20 bg-blue-300">My Skills</section>
-        <section className="py-20 bg-amber-300">My Experiences</section>
-        <section className="py-20 bg-red-300">My Projects</section>
-        <section className="py-20 bg-yellow-300">Contact Me</section>
       </div>
     </main>
   );

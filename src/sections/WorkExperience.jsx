@@ -5,7 +5,7 @@ import { workExperience } from "../constants";
 const WorkExperience = () => {
   return (
     <section className="mx-auto max-w-8xl w-[95%]">
-      <h2 className="text-4xl font-bold mb-8 font-manrope max-md:text-3xl max-md:text-center">
+      <h2 className="text-5xl font-agustina font-extrabold mb-8 max-md:text-3xl max-md:text-center">
         Proffesional Experience
       </h2>
 

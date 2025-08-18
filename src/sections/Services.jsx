@@ -83,7 +83,7 @@ const Services = () => {
 
       {/* Right: heading, subtitle, icons, bullets */}
       <div className="w-full md:w-1/2 md:pl-12 text-left">
-        <h2 className="text-4xl font-bold mb-2 font-manrope max-md:text-center max-md:text-3xl">
+        <h2 className="text-5xl font-agustina font-extrabold mb-2  max-md:text-center max-md:text-3xl">
           What I do
         </h2>
         <p className="uppercase text-sm tracking-wide mb-8 max-md:text-center font-montserrat">
@@ -109,14 +109,14 @@ const Services = () => {
         </div>
 
         {/* Bullet list */}
-        <ul className="space-y-4">
+        <ul className="space-y-4 items-start">
           {services.map((text, idx) => (
             <li
               key={idx}
-              className="flex items-start text-md font-manrope max-w-prose text-justify max-md:text-[14px]"
+              className="flex items-start text-md font-manrope max-w-prose max-md:text-[16px]"
             >
-              <span className="mr-2 py-2">⚡</span>
-              <p className="px-5">{text}</p>
+              <span className="mr-2">⚡</span>
+              <p className="">{text}</p>
             </li>
           ))}
         </ul>

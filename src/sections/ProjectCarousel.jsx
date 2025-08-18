@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
-import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa"; // ⬅️ add this
+import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -17,7 +17,7 @@ export default function ProjectCardCarousel() {
       id="Featured"
       className="w-full flex flex-col items-center select-none"
     >
-      <h2 className="text-4xl font-bold font-montserrat max-sm:justify-center max-md:text-3xl mt-5">
+      <h2 className="text-5xl font-agustina font-extrabold max-sm:justify-center max-md:text-3xl mt-5">
         Featured Projects
       </h2>
       <span className="text-m opacity-80 mb-12 text-slate-gray max-sm:text-sm mt-2">
@@ -56,7 +56,7 @@ export default function ProjectCardCarousel() {
                     - mobile   : 290 px
                     - ≥640 px  : 346 px
                     - ≥1024 px : 420 px            */
-                className="relative z-[2] origin-center w-[290px] sm:w-[346px] lg:w-[420px]"
+                className="relative z-[2] origin-center w-[350px] lg:w-[420px] max-sm:w-[316px]"
               >
                 <div className="rounded-2xl bg-white shadow-xl overflow-hidden">
                   <ProjectCard2 data={project} />
@@ -66,22 +66,38 @@ export default function ProjectCardCarousel() {
           ))}
 
           {/* controls row: prev • dots • next */}
-          <div className="slider-controller pt-10 max-md:pt-5">
+          <div className="slider-controller pt-10 max-md:pt-5 gap-2 lg:gap-6">
+            {/*  ← Prev  */}
             <div
-              className="swiper-button-prev slider-arrow"
+              className="swiper-button-prev slider-arrow
+               flex items-center justify-center
+               w-4  h-4   sm:w-5  sm:h-5   lg:w-6  lg:h-6"
               aria-label="Previous"
             >
               <FaChevronCircleLeft
-                size="12px"
-                className="text-black hover:text-blue-500 transition ease-in-out duration-500"
+                className="text-black
+                 w-3  h-3   sm:w-4  sm:h-4   lg:w-5  lg:h-5
+                 hover:text-blue-500 transition duration-500"
               />
             </div>
 
-            <div className="swiper-pagination text-blue-300" />
-            <div className="swiper-button-next slider-arrow" aria-label="Next">
+            {/*  dots  */}
+            <div
+              className="swiper-pagination
+               mx-[1.25rem] sm:mx-[2rem] lg:mx-[3rem]" /* ← spacing */
+            />
+
+            {/*  → Next  */}
+            <div
+              className="swiper-button-next slider-arrow
+               flex items-center justify-center
+               w-4  h-4   sm:w-5  sm:h-5   lg:w-6  lg:h-6"
+              aria-label="Next"
+            >
               <FaChevronCircleRight
-                size="12px"
-                className="text-black  hover:text-blue-500 transition ease-in-out duration-500 "
+                className="text-black
+                 w-3  h-3   sm:w-4  sm:h-4   lg:w-5  lg:h-5
+                 hover:text-blue-500 transition duration-500"
               />
             </div>
           </div>

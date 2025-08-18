@@ -36,7 +36,7 @@ const Hero = () => (
 
       {/* 2) Text Content */}
       <div className="order-2 md:order-none flex flex-col gap-6 max-md:flex-1">
-        <h1 className="text-4xl font-bold font-manrope max-md:text-3xl max-md:text-center">
+        <h1 className="text-5xl font-agustina font-extrabold max-md:text-3xl max-md:text-center">
           Muhammad Moosa Hashim{" "}
           <span role="img" aria-label="waving hand" className="wave-emoji">
             👋
@@ -46,13 +46,14 @@ const Hero = () => (
           Software Engineer
         </p>
         <p className="font-manrope max-w-prose leading-relaxed text-justify max-md:text-[13px] max-md:text-center">
-          A passionate Full Stack Software Developer&nbsp;
+          Full-stack developer with a passion for turning ideas into polished
+          web and mobile products&nbsp;
           <span role="img" aria-label="rocket">
             🚀
-          </span>{" "}
-          with experience in building Web & Mobile applications using
-          JavaScript, React.js, TailwindCSS, Node.js, Flutter, SpringBoot and
-          other amazing libraries and frameworks!
+          </span>
+          learn quickly by digging into docs rather than tutorials, use AI as a
+          practical side-kick, and keep pace with the latest tools so I can
+          adapt to whatever the next project demands.
         </p>
 
         {/* 3) Image - Mobile Only (appears after text, before buttons) */}

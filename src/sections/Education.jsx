@@ -40,7 +40,7 @@ const Education = () => {
 
   return (
     <section className="w-[95%] mx-auto max-w-8xl flex flex-col justify-center">
-      <h2 className="text-4xl font-bold mb-8 font-manrope max-md:text-3xl max-md:text-center">
+      <h2 className="text-5xl font-agustina font-extrabold mb-8 max-md:text-3xl max-md:text-center">
         Education
       </h2>
 

@@ -97,25 +97,34 @@
 }
 
 @layer utilities {
+  .input-field {
+    @apply w-full rounded-xl border border-gray-300 px-4 py-3
+           focus:border-primary focus:ring-primary/40 focus:ring-2
+           outline-none transition;
+  }
+
   /* container + slide sizing like the reference */
+  /* ========== Swiper container & slides ========== */
   .swiper_container {
-    --swiper-theme-color: #155dfc; /* active pagination dot = black */
+    --swiper-theme-color: #155dfc; /* active bullet colour */
     height: fit-content;
     padding-top: 0.5rem !important;
     padding-bottom: 2rem !important;
     max-width: 100%;
     overflow-x: hidden;
   }
+
   .swiper-slide {
     width: fit-content !important;
     height: fit-content !important;
   }
+
   .swiper-slide-shadow-left,
   .swiper-slide-shadow-right {
     display: none;
   }
 
-  /* ----------------  Controls row (prev • dots • next) --------------- */
+  /* ========== controls row (‹ dots ›) ========== */
   .slider-controller {
     position: relative;
     height: fit-content;
@@ -126,11 +135,10 @@
     gap: 0.75rem;
   }
 
-  /* ---- arrow buttons ----------------------------------------------- */
+  /* ----- arrow buttons (mobile default) ----- */
   .slider-controller .slider-arrow {
-    /* click-target box */
-    width: 8px; /* <-- full button width/height */
-    height: 8px;
+    width: 12px; /* full button hit-box */
+    height: 12px;
     background: transparent !important;
     border-radius: 9999px;
     display: flex;
@@ -138,79 +146,110 @@
     justify-content: center;
     color: #000;
     cursor: pointer;
-
-    /* no shadows / outlines */
     box-shadow: none !important;
     filter: none !important;
-    outline: none;
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* explicitly size the SVG inside (react-icons) */
   .slider-controller .slider-arrow svg {
-    width: 8px;
-    height: 8px;
+    width: 12px; /* icon itself */
+    height: 12px;
   }
 
-  /* keep arrows inline, kill Swiper's 44-px font-size & default pseudo-icons */
+  /* keep arrows inline & remove Swiper’s default arrow glyphs */
   .slider-controller .swiper-button-prev,
   .slider-controller .swiper-button-next {
     position: static !important;
     inset: auto !important;
     margin: 0 !important;
     transform: none !important;
-    font-size: 0 !important; /* kills 1em scaling */
-  }
-  .slider-controller .swiper-button-prev::after,
-  .slider-controller .swiper-button-next::after {
-    content: "" !important; /* removes Swiper arrow glyphs */
+    font-size: 0 !important; /* kills 44 px nav size */
   }
 
-  /* disabled state */
+  .slider-controller .swiper-button-prev::after,
+  .slider-controller .swiper-button-next::after {
+    content: "" !important;
+  }
+
   .slider-controller .swiper-button-prev.swiper-button-disabled,
   .slider-controller .swiper-button-next.swiper-button-disabled {
     opacity: 0.35;
     cursor: not-allowed;
   }
 
-  /* optional hover feedback (very faint) */
+  /* optional hover feedback */
   .slider-controller .slider-arrow:hover {
-    background: #155dfc;
+    background: #155dfc10; /* faint tint */
   }
 
-  /* ----------------  Pagination dots -------------------------------- */
+  /* ===== Pagination bullets ===== */
   .swiper-pagination {
     width: auto !important;
     position: static !important;
-    margin: 0 0.75rem;
     display: flex;
     align-items: center;
     gap: 10px;
   }
+
   .swiper-pagination-bullet {
-    width: 10px;
-    height: 10px;
+    width: 6px; /* mobile default */
+    height: 6px;
     background: #6d6d6d !important;
     opacity: 0.25;
     margin: 0 !important;
   }
+
   .swiper-pagination-bullet-active {
     background: #155dfc !important;
     opacity: 1;
   }
 
-  /* keep the active slide visually above its neighbors */
+  /* ===== responsive sizes ===== */
+  @media (min-width: 768px) {
+    /* md / ≥768 px */
+    .slider-controller .slider-arrow {
+      width: 16px;
+      height: 16px;
+    }
+    .slider-controller .slider-arrow svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .swiper-pagination-bullet {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    /* lg / ≥1024 px */
+    .slider-controller .slider-arrow {
+      width: 20px;
+      height: 20px;
+    }
+    .slider-controller .slider-arrow svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  /* keep the active slide visually above its neighbours */
   .swiper-slide-active {
     z-index: 50 !important;
   }
 
-  /* Responsive tweak like the reference */
+  /* reference tweak */
   @media (max-width: 1100px) {
     .swiper_container {
       max-width: 100%;
     }
   }
-
   .max-w-8xl {
     max-width: 88rem; /* 88rem = 1408px */
   }
