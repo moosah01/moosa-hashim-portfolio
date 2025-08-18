@@ -99,7 +99,7 @@
 @layer utilities {
   /* container + slide sizing like the reference */
   .swiper_container {
-    --swiper-theme-color: #000; /* active bullet color */
+    --swiper-theme-color: #155dfc; /* active pagination dot = black */
     height: fit-content;
     padding-top: 0.5rem !important;
     padding-bottom: 2rem !important;
@@ -115,7 +115,7 @@
     display: none;
   }
 
-  /* --- Controls row (prev • dots • next) --- */
+  /* ----------------  Controls row (prev • dots • next) --------------- */
   .slider-controller {
     position: relative;
     height: fit-content;
@@ -126,47 +126,59 @@
     gap: 0.75rem;
   }
 
-  /* Arrows: transparent background, black icon */
+  /* ---- arrow buttons ----------------------------------------------- */
   .slider-controller .slider-arrow {
-    background: transparent !important; /* <- no white background */
-    width: 2px;
-    height: 2px;
-    border-radius: 9999px; /* keeps hit area round */
+    /* click-target box */
+    width: 8px; /* <-- full button width/height */
+    height: 8px;
+    background: transparent !important;
+    border-radius: 9999px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000; /* react-icons inherit this */
+    color: #000;
     cursor: pointer;
-    box-shadow: none !important; /* <- remove glow/shadow */
-    filter: none !important; /* <- remove drop-shadow */
+
+    /* no shadows / outlines */
+    box-shadow: none !important;
+    filter: none !important;
     outline: none;
-    -webkit-tap-highlight-color: transparent; /* mobile tap glow off */
+    -webkit-tap-highlight-color: transparent;
   }
-  /* Keep arrows in the row (not absolutely positioned) */
+
+  /* explicitly size the SVG inside (react-icons) */
+  .slider-controller .slider-arrow svg {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* keep arrows inline, kill Swiper's 44-px font-size & default pseudo-icons */
   .slider-controller .swiper-button-prev,
   .slider-controller .swiper-button-next {
     position: static !important;
     inset: auto !important;
     margin: 0 !important;
     transform: none !important;
+    font-size: 0 !important; /* kills 1em scaling */
   }
-  /* Remove Swiper’s default arrow glyphs */
   .slider-controller .swiper-button-prev::after,
   .slider-controller .swiper-button-next::after {
-    content: "" !important;
+    content: "" !important; /* removes Swiper arrow glyphs */
   }
-  /* Disabled state from Swiper */
+
+  /* disabled state */
   .slider-controller .swiper-button-prev.swiper-button-disabled,
   .slider-controller .swiper-button-next.swiper-button-disabled {
     opacity: 0.35;
     cursor: not-allowed;
   }
-  /* Optional hover feedback (still transparent) */
+
+  /* optional hover feedback (very faint) */
   .slider-controller .slider-arrow:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: #155dfc;
   }
 
-  /* --- Dots in the same row, black --- */
+  /* ----------------  Pagination dots -------------------------------- */
   .swiper-pagination {
     width: auto !important;
     position: static !important;
@@ -178,16 +190,16 @@
   .swiper-pagination-bullet {
     width: 10px;
     height: 10px;
-    background: #000 !important; /* black bullets */
+    background: #6d6d6d !important;
     opacity: 0.25;
     margin: 0 !important;
   }
   .swiper-pagination-bullet-active {
-    background: #000 !important; /* black active bullet */
+    background: #155dfc !important;
     opacity: 1;
   }
 
-  /* Optional: keep the active slide above neighbors */
+  /* keep the active slide visually above its neighbors */
   .swiper-slide-active {
     z-index: 50 !important;
   }

@@ -17,13 +17,14 @@ export default function ProjectCard2({ data }) {
         className="w-full aspect-[4/3] object-contain rounded-t-2xl"
       />
 
-      <div className="relative z-10 flex flex-col items-start gap-1 p-4">
-        <h2 className="text-lg font-manrope font-extrabold leading-tight md:text-xl">
+      <div className="relative z-10 flex flex-col items-start gap-1 p-3 sm:p-4">
+        <h2 className="text-base sm:text-lg font-manrope font-extrabold leading-tight">
           {data.title}
         </h2>
-        <h3 className="text-slate-gray">{data.description}</h3>
-
-        <div className="flex flex-row gap-4 py-8">
+        <h3 className="text-slate-gray text-sm sm:text-base">
+          {data.description}
+        </h3>
+        <div className="flex flex-row gap-4 py-6 sm:py-8">
           {data.liveDemo && (
             <a
               href={data.liveDemo}

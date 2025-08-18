@@ -113,7 +113,7 @@ const Services = () => {
           {services.map((text, idx) => (
             <li
               key={idx}
-              className="flex items-start text-md font-manrope max-w-prose text-justify max-md:text-[16px]"
+              className="flex items-start text-md font-manrope max-w-prose text-justify max-md:text-[14px]"
             >
               <span className="mr-2 py-2">⚡</span>
               <p className="px-5">{text}</p>

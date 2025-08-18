@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // ⬅️ add this
+import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa"; // ⬅️ add this
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -17,8 +17,10 @@ export default function ProjectCardCarousel() {
       id="Featured"
       className="w-full flex flex-col items-center select-none"
     >
-      <h2 className="text-2xl font-bold">Featured Projects</h2>
-      <span className="text-sm opacity-80 mb-4">
+      <h2 className="text-4xl font-bold font-montserrat max-sm:justify-center max-md:text-3xl mt-5">
+        Featured Projects
+      </h2>
+      <span className="text-m opacity-80 mb-12 text-slate-gray max-sm:text-sm mt-2">
         Have a look at some of my highlighted projects
       </span>
 
@@ -30,11 +32,11 @@ export default function ProjectCardCarousel() {
           loop={true}
           slidesPerView="auto"
           coverflowEffect={{
-            rotate: 0,
+            rotate: -8,
             stretch: 0,
             depth: 100,
             modifier: 2.5,
-            slideShadows: false,
+            slideShadows: true,
           }}
           pagination={{ el: ".swiper-pagination", clickable: true }}
           navigation={{
@@ -50,7 +52,11 @@ export default function ProjectCardCarousel() {
               <motion.div
                 whileHover={{ scale: 1.06 }}
                 transition={{ duration: 0.18, ease: "easeOut" }}
-                className="relative z-[2] origin-center w-[320px] sm:w-[360px]"
+                /* width by breakpoint
+                    - mobile   : 290 px
+                    - ≥640 px  : 346 px
+                    - ≥1024 px : 420 px            */
+                className="relative z-[2] origin-center w-[290px] sm:w-[346px] lg:w-[420px]"
               >
                 <div className="rounded-2xl bg-white shadow-xl overflow-hidden">
                   <ProjectCard2 data={project} />
@@ -60,17 +66,23 @@ export default function ProjectCardCarousel() {
           ))}
 
           {/* controls row: prev • dots • next */}
-          <div className="slider-controller">
+          <div className="slider-controller pt-10">
             <div
               className="swiper-button-prev slider-arrow"
               aria-label="Previous"
             >
-              <FaChevronLeft className="text-black" size={0.5} />
+              <FaChevronCircleLeft
+                size="12px"
+                className="text-black hover:text-blue-500 transition ease-in-out duration-500"
+              />
             </div>
 
-            <div className="swiper-pagination" />
+            <div className="swiper-pagination text-blue-300" />
             <div className="swiper-button-next slider-arrow" aria-label="Next">
-              <FaChevronRight className="text-black" size={0.5} />
+              <FaChevronCircleRight
+                size="12px"
+                className="text-black  hover:text-blue-500 transition ease-in-out duration-500 "
+              />
             </div>
           </div>
         </Swiper>

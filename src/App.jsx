@@ -12,7 +12,7 @@ function App() {
   return (
     <main className="relative w-full overflow-x-hidden">
       <Nav />
-      <div className="flex flex-col gap-50 max-md:gap-3 py-7">
+      <div className="flex flex-col gap-50 max-md:gap-25 py-7">
         <section>
           <Hero />
         </section>
