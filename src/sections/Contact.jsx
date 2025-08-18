@@ -1,25 +1,48 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { toast, Toaster } from "react-hot-toast";
 import { FaEnvelope } from "react-icons/fa";
 
-const Contact = () => {
-  // simple form state (no validation)
+export default function Contact() {
   const [form, setForm] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
   });
+  const [sending, setSending] = useState(false);
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // send / toast / reset ...
+
+    setSending(true);
+    toast.loading("Sending…", { id: "mail" });
+
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE,
+        import.meta.env.VITE_EMAILJS_TEMPLATE,
+        form,
+        import.meta.env.VITE_EMAILJS_PUBLIC
+      )
+      .then(() => {
+        toast.success("Message sent! 🎉", { id: "mail" });
+        setForm({ name: "", email: "", subject: "", message: "" });
+      })
+      .catch(() => {
+        toast.error("Oops, something went wrong.", { id: "mail" });
+      })
+      .finally(() => setSending(false));
   };
 
   return (
     <section id="contact" className="max-w-8xl mx-auto px-4 py-16 md:py-24">
+      {/* single toast container for this page; or move it once to App.jsx */}
+      <Toaster position="top-center" />
+
       <div className="flex flex-col md:flex-row items-center md:items-start gap-16">
         {/* ---------- intro column ---------- */}
         <div className="flex-1 flex flex-col gap-8 text-center md:text-left">
@@ -43,8 +66,8 @@ const Contact = () => {
             href="mailto:moosah01@gmail.com"
             className="inline-flex items-center gap-3 bg-white rounded-xl shadow-3xl px-6 py-4 w-max mx-auto md:mx-0"
           >
-            <FaEnvelope className="text-black hover:text-blue-500 transition 500 ease-in-out text-xl" />
-            <div className="text-left w-full">
+            <FaEnvelope className="text-black text-xl hover:text-blue-500 transition duration-300" />
+            <div className="text-left">
               <span className="block text-sm text-slate-gray">Write me at</span>
               <span className="font-medium text-blue-500">
                 moosah01@gmail.com
@@ -99,15 +122,16 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="mt-2 bg-blue-500 text-white font-semibold py-3 rounded-full transition hover:bg-black hover:text-white duration-500 ease-in-out"
+              disabled={sending}
+              className="mt-2 bg-blue-500 text-white font-semibold py-3 rounded-full
+                         transition-colors duration-300
+                         hover:bg-black disabled:opacity-50"
             >
-              Send Message
+              {sending ? "Sending…" : "Send Message"}
             </button>
           </div>
         </form>
       </div>
     </section>
   );
-};
-
-export default Contact;
+}
