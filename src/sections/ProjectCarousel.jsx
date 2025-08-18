@@ -66,7 +66,7 @@ export default function ProjectCardCarousel() {
           ))}
 
           {/* controls row: prev • dots • next */}
-          <div className="slider-controller pt-10">
+          <div className="slider-controller pt-10 max-md:pt-5">
             <div
               className="swiper-button-prev slider-arrow"
               aria-label="Previous"
