@@ -97,6 +97,25 @@
 }
 
 @layer utilities {
+  .blinking-cursor {
+    display: inline-block;
+    width: 2px; /* thickness of the bar */
+    height: 1em; /* <-- this was missing */
+    background: #3b82f6; /* Tailwind blue-500 */
+    margin-left: 4px;
+    animation: blink 1s step-end infinite;
+    vertical-align: -0.1em; /* tiny nudge so it sits nicely on the baseline */
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
   .input-field {
     @apply w-full rounded-xl border border-gray-300 px-4 py-3
            focus:border-primary focus:ring-primary/40 focus:ring-2

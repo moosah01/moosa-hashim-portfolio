@@ -50,7 +50,7 @@ const Nav = () => {
                   href={item.href}
                   className={`block text-center font-montserrat text-leading text-base transition-all duration-300 ease-in-out ${
                     item.label === "Portfolio"
-                      ? "bg-neutral-800 text-white px-5 py-2 rounded-md hover:bg-blue-400 text-2xl"
+                      ? "bg-blue-500 text-white px-5 py-2 rounded-md hover:bg-neutral-800 text-2xl"
                       : "text-black text-2xl relative group"
                   }`}
                 >

@@ -1,52 +1,33 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 
-const MotionCard = motion.div;
+const fallbackImage = "https://placehold.co/600x400?text=Image+not+available";
 
-export default function ProjectCard({
-  project,
-  isActive = false,
-  fallbackImage = "https://placehold.co/600x400?text=Image+not+available",
-}) {
-  const [imgSrc, setImgSrc] = useState(project.imageUrl ?? fallbackImage);
+export default function ProjectCard({ data }) {
+  const [imgSrc, setImgSrc] = useState(data.imageUrl ?? fallbackImage);
 
   return (
-    <MotionCard
-      initial={false}
-      animate={{
-        scale: isActive ? 1.1 : 1,
-        filter: isActive ? "none" : "grayscale(0.35) blur(2px)",
-      }}
-      transition={{ type: "spring", stiffness: 250, damping: 22 }}
-      className="relative w-[320px] sm:w-[380px] overflow-hidden rounded-2xl bg-blue-500 shadow-md
-                 transition-colors duration-300 ease-in-out z-10"
-    >
-      {/* Image */}
-      <div className="p-0">
-        <img
-          src={imgSrc}
-          onError={() => setImgSrc(fallbackImage)}
-          alt={project.title}
-          className="h-48 w-full object-cover"
-        />
-      </div>
+    <div className="w-full flex flex-col">
+      {/* use contain to avoid cropping; rounded top to match card */}
+      <img
+        src={imgSrc}
+        onError={() => setImgSrc(fallbackImage)}
+        alt={data.title}
+        className="w-full aspect-[4/3] object-contain rounded-t-2xl"
+      />
 
-      {/* Bottom gradient for legibility */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/30 to-transparent" />
-
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-start gap-1 p-4">
-        <h3 className="text-lg font-extrabold leading-tight md:text-xl">
-          {project.title}
+      <div className="relative z-10 flex flex-col items-start gap-1 p-3 sm:p-4">
+        <h2 className="text-base sm:text-lg font-manrope font-extrabold leading-tight">
+          {data.title}
+        </h2>
+        <h3 className="text-slate-gray text-sm sm:text-base">
+          {data.description}
         </h3>
-        <p className="text-sm text-gray-600">{project.description}</p>
-
-        <div className="mt-3 flex gap-4">
-          {project.liveDemo && (
+        <div className="flex flex-row gap-4 py-6 sm:py-8">
+          {data.liveDemo && (
             <a
-              href={project.liveDemo}
+              href={data.liveDemo}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 text-blue-600 underline-offset-4 hover:underline"
@@ -55,9 +36,9 @@ export default function ProjectCard({
               <ArrowUpRight size={16} />
             </a>
           )}
-          {project.github && (
+          {data.github && (
             <a
-              href={project.github}
+              href={data.github}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 text-gray-600 underline-offset-4 hover:underline"
@@ -68,6 +49,6 @@ export default function ProjectCard({
           )}
         </div>
       </div>
-    </MotionCard>
+    </div>
   );
 }

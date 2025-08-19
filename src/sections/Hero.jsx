@@ -1,6 +1,7 @@
 import React from "react";
 import moosaImage from "../assets/images/moosa.jpg";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import Typewriter from "../components/Typewriter";
 
 const Hero = () => (
   <section className="w-[90%] py-10 px-8 mx-auto max-w-8xl">
@@ -43,7 +44,16 @@ const Hero = () => (
           </span>
         </h1>
         <p className="font-manrope text-xl text-slate-gray max-md:text-center">
-          Software Engineer
+          <Typewriter
+            words={[
+              "Software Engineer",
+              "Full-Stack Developer",
+              "Tech Enthusiast",
+              "Open-Source Contributor",
+              "Problem Solver",
+            ]}
+          />
+          <span className="blinking-cursor" aria-hidden="true"></span>
         </p>
         <p className="font-manrope max-w-prose leading-relaxed text-justify max-md:text-[13px] max-md:text-center">
           Full-stack developer with a passion for turning ideas into polished
@@ -76,7 +86,7 @@ const Hero = () => (
           <a
             href="/SWE-Muhammad_Moosa_Hashim_Resume-2025.pdf"
             download
-            className="wiggle w-64 font-manrope transition ease-in-out duration-300 inline-block px-8 py-3 bg-neutral-800 hover:bg-blue-400 rounded-full text-center text-white"
+            className="wiggle w-64 font-manrope transition ease-in-out duration-300 inline-block px-8 py-3 bg-blue-500 hover:bg-neutral-800 rounded-full text-center text-white"
           >
             Download My Resume
           </a>

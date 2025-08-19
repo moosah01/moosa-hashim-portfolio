@@ -8,7 +8,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import ProjectCard2 from "../components/ProjectCard2";
+import ProjectCard from "../components/ProjectCard";
 import { projectData } from "../constants";
 
 export default function ProjectCardCarousel() {
@@ -48,18 +48,20 @@ export default function ProjectCardCarousel() {
           className="swiper_container px-2 pt-2 pb-8 overflow-visible"
         >
           {projectData.map((project, idx) => (
-            <SwiperSlide key={project?.id ?? idx} className="!w-auto !h-auto">
+            <SwiperSlide
+              key={project?.id ?? idx}
+              className=" pt-3 !w-auto !h-auto"
+            >
               <motion.div
                 whileHover={{ scale: 1.06 }}
                 transition={{ duration: 0.18, ease: "easeOut" }}
-                /* width by breakpoint
-                    - mobile   : 290 px
-                    - ≥640 px  : 346 px
-                    - ≥1024 px : 420 px            */
                 className="relative z-[2] origin-center w-[350px] lg:w-[420px] max-sm:w-[316px]"
               >
-                <div className="rounded-2xl bg-white shadow-xl overflow-hidden">
-                  <ProjectCard2 data={project} />
+                {/* NEW wrapper so the ring isn't clipped by overflow-hidden */}
+                <div className="rounded-2xl">
+                  <div className="rounded-2xl bg-white shadow-xl overflow-hidden">
+                    <ProjectCard data={project} />
+                  </div>
                 </div>
               </motion.div>
             </SwiperSlide>
