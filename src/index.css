@@ -107,6 +107,10 @@
     vertical-align: -0.1em; /* tiny nudge so it sits nicely on the baseline */
   }
 
+  .animate-border-spin {
+    animation: border-spin 7s linear infinite;
+  }
+
   @keyframes blink {
     0%,
     100% {
