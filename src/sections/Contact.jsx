@@ -1,159 +1,185 @@
-import { useState, useEffect } from "react";
-import emailjs from "@emailjs/browser";
-import { toast, Toaster } from "react-hot-toast";
-import { FaEnvelope } from "react-icons/fa";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { ArrowUpRight, Clock, Copy, FileDown, Send } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { Reveal, Section, SpotlightCard } from "../components/ui";
+import { btnPrimary } from "../lib/styles";
+import { cn } from "../lib/cn";
+import { copyEmail } from "../lib/actions";
+import { useLocalTime } from "../lib/hooks";
+import { profile } from "../data/portfolio";
 
-/* ---------- responsive helper ---------- */
-function useMediaQuery(query) {
-  const [matches, setMatches] = useState(() =>
-    typeof window === "undefined" ? false : window.matchMedia(query).matches
-  );
+const emailConfig = {
+  service: import.meta.env.VITE_EMAILJS_SERVICE,
+  template: import.meta.env.VITE_EMAILJS_TEMPLATE,
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC,
+};
 
-  useEffect(() => {
-    const media = window.matchMedia(query);
-    const listener = () => setMatches(media.matches);
-    media.addEventListener("change", listener);
-    return () => media.removeEventListener("change", listener);
-  }, [query]);
+const emptyForm = { name: "", email: "", subject: "", message: "" };
 
-  return matches;
-}
+const field =
+  "block w-full rounded-lg bg-white px-3.5 py-2.5 text-sm/6 text-gray-950 ring-1 ring-gray-950/10 transition outline-none ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-sky-500 dark:bg-white/[0.03] dark:text-white dark:ring-white/10 dark:placeholder:text-gray-500 dark:focus:ring-sky-400";
 
-/* ---------- main component ---------- */
-export default function Contact() {
-  const isDesktop = useMediaQuery("(min-width: 1024px)"); // lg breakpoint
-
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+function ContactForm() {
+  const [form, setForm] = useState(emptyForm);
   const [sending, setSending] = useState(false);
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const update = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
+
+    // Without EmailJS keys (e.g. a fresh deploy), hand off to the mail client.
+    if (!emailConfig.service || !emailConfig.template || !emailConfig.publicKey) {
+      const subject = form.subject || `Hello from ${form.name}`;
+      const body = `${form.message}\n\n— ${form.name} (${form.email})`;
+      window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      return;
+    }
+
     setSending(true);
     toast.loading("Sending…", { id: "mail" });
-
-    emailjs
-      .send(
-        import.meta.env.VITE_EMAILJS_SERVICE,
-        import.meta.env.VITE_EMAILJS_TEMPLATE,
-        form,
-        import.meta.env.VITE_EMAILJS_PUBLIC
-      )
-      .then(() => {
-        toast.success("Message sent! 🎉", { id: "mail" });
-        setForm({ name: "", email: "", subject: "", message: "" });
-      })
-      .catch(() => toast.error("Oops, something went wrong.", { id: "mail" }))
-      .finally(() => setSending(false));
+    try {
+      const { default: emailjs } = await import("@emailjs/browser");
+      await emailjs.send(emailConfig.service, emailConfig.template, form, emailConfig.publicKey);
+      toast.success("Message sent — I'll be in touch soon.", { id: "mail" });
+      setForm(emptyForm);
+    } catch {
+      toast.error(`Something went wrong. Email me at ${profile.email}`, { id: "mail" });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
-    <section id="contact" className="max-w-8xl mx-auto px-4 py-16 md:py-24">
-      {/* toast sits bottom-center on desktop, top-center on mobile */}
-      <Toaster
-        toastOptions={{
-          className:
-            "px-6 py-5 text-base md:text-lg rounded-2xl shadow-xl bg-neutral-900 text-white", // Tailwind
-          style: { maxWidth: "420px" },
-        }}
-        position={isDesktop ? "bottom-center" : "top-center"}
-      />
-
-      <div className="flex flex-col md:flex-row items-center md:items-start gap-16">
-        {/* ---------- intro column ---------- */}
-        <div className="flex-1 flex flex-col gap-8 text-center md:text-left">
-          <h1 className="font-extrabold font-agustina text-5xl md:text-7xl leading-tight">
-            Let’s chat.
-            <br />
-            Tell me about&nbsp;
-            <span className="text-blue-500">your next project.</span>
-          </h1>
-
-          <p className="text-lg text-slate-gray max-w-md mx-auto md:mx-0">
-            I’m always excited to build something fresh — drop a note and we’ll
-            make it happen{" "}
-            <span role="img" aria-label="cat smirk">
-              😼
-            </span>
-          </p>
-
-          {/* email pill */}
-          <a
-            href="mailto:moosah01@gmail.com"
-            className="inline-flex items-center gap-3 bg-white rounded-xl shadow-3xl px-6 py-4 w-max mx-auto md:mx-0"
-          >
-            <FaEnvelope className="text-black text-xl hover:text-blue-500 transition duration-300" />
-            <div className="text-left">
-              <span className="block text-sm text-slate-gray">Write me at</span>
-              <span className="font-medium text-blue-500">
-                moosah01@gmail.com
-              </span>
-            </div>
-          </a>
-        </div>
-
-        {/* ---------- form column ---------- */}
-        <form
-          onSubmit={handleSubmit}
-          className="flex-1 bg-white/90 backdrop-blur-md shadow-3xl rounded-3xl p-8 md:p-12 w-full max-w-lg"
-        >
-          <h2 className="text-2xl font-bold mb-8 text-center">
-            Send me a message!
-          </h2>
-
-          <div className="flex flex-col gap-6">
-            <input
-              name="name"
-              placeholder="Full name*"
-              required
-              value={form.name}
-              onChange={handleChange}
-              className="input-field"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email address*"
-              required
-              value={form.email}
-              onChange={handleChange}
-              className="input-field"
-            />
-            <input
-              name="subject"
-              placeholder="Subject"
-              value={form.subject}
-              onChange={handleChange}
-              className="input-field"
-            />
-            <textarea
-              name="message"
-              placeholder="Tell me something about your work*"
-              required
-              rows={4}
-              value={form.message}
-              onChange={handleChange}
-              className="input-field resize-none"
-            />
-
-            <button
-              type="submit"
-              disabled={sending}
-              className="mt-2 bg-blue-500 text-white font-semibold py-3 rounded-full
-                         transition-colors duration-300 hover:bg-black disabled:opacity-50"
-            >
-              {sending ? "Sending…" : "Send Message"}
-            </button>
-          </div>
-        </form>
+    <form onSubmit={submit} className="h-full p-6 sm:p-8">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="block">
+          <span className="mb-1.5 block text-sm font-medium">Name</span>
+          <input name="name" required autoComplete="name" value={form.name} onChange={update} placeholder="Jane Doe" className={field} />
+        </label>
+        <label className="block">
+          <span className="mb-1.5 block text-sm font-medium">Email</span>
+          <input
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            value={form.email}
+            onChange={update}
+            placeholder="jane@company.com"
+            className={field}
+          />
+        </label>
+        <label className="block sm:col-span-2">
+          <span className="mb-1.5 block text-sm font-medium">
+            Subject <span className="font-normal text-gray-400">(optional)</span>
+          </span>
+          <input name="subject" value={form.subject} onChange={update} placeholder="Senior Software Engineer role at …" className={field} />
+        </label>
+        <label className="block sm:col-span-2">
+          <span className="mb-1.5 block text-sm font-medium">Message</span>
+          <textarea
+            name="message"
+            required
+            rows={5}
+            value={form.message}
+            onChange={update}
+            placeholder="Tell me about the role, the team or the problem you're solving."
+            className={cn(field, "resize-none")}
+          />
+        </label>
       </div>
-    </section>
+      <button type="submit" disabled={sending} className={cn(btnPrimary, "group mt-6 w-full disabled:opacity-60")}>
+        {sending ? "Sending…" : "Send message"}
+        <Send className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      </button>
+    </form>
+  );
+}
+
+export default function Contact() {
+  const time = useLocalTime(profile.timeZone);
+
+  const links = [
+    { label: "LinkedIn", value: "in/moosahashim", href: profile.linkedin, icon: FaLinkedin },
+    { label: "GitHub", value: "@moosah01", href: profile.github, icon: FaGithub },
+    { label: "Résumé", value: "PDF · Aug 2026", href: profile.resume, icon: FileDown, download: true },
+  ];
+
+  return (
+    <Section
+      id="contact"
+      index="07"
+      eyebrow="Contact"
+      tone="indigo"
+      annotation={'await hire("moosa"); // → 200 OK'}
+      title="Let's build something that lasts."
+      intro="Hiring for a role, stuck on a hard integration problem or need a product shipped? My inbox is open — I'd love to hear what you're working on."
+    >
+      <div className="line-y grid gap-px bg-(--line) lg:grid-cols-2">
+        <Reveal className="flex flex-col bg-(--site-bg)">
+          <SpotlightCard className="p-6 sm:p-8" color="129 140 248">
+            <p className="font-mono text-xs tracking-widest text-gray-500 uppercase">Email</p>
+            <button
+              type="button"
+              onClick={copyEmail}
+              className="group mt-3 flex w-full items-center justify-between gap-4 text-left"
+              title="Copy email address"
+            >
+              <span className="text-2xl font-medium tracking-tight break-all sm:text-3xl">{profile.email}</span>
+              <span className="grid size-10 shrink-0 place-items-center rounded-full ring-1 ring-gray-950/10 transition ring-inset group-hover:bg-gray-950 group-hover:text-white dark:ring-white/15 dark:group-hover:bg-white dark:group-hover:text-gray-950">
+                <Copy className="size-4" />
+              </span>
+            </button>
+            <p className="mt-2 text-sm text-gray-500">Click to copy · or use the form</p>
+          </SpotlightCard>
+
+          <ul className="border-t border-(--line)">
+            {links.map(({ label, value, href, icon: Icon, download }) => (
+              <li key={label} className="border-b border-(--line) last:border-b-0">
+                <a
+                  href={href}
+                  {...(download
+                    ? { download: profile.resumeFileName }
+                    : { target: "_blank", rel: "noreferrer" })}
+                  className="group flex items-center gap-4 px-6 py-4 transition hover:bg-gray-950/[0.02] sm:px-8 dark:hover:bg-white/[0.02]"
+                >
+                  <Icon className="size-5 text-gray-500 transition group-hover:text-gray-950 dark:group-hover:text-white" />
+                  <span className="text-sm font-medium">{label}</span>
+                  <span className="ml-auto font-mono text-xs text-gray-500">{value}</span>
+                  <ArrowUpRight className="size-4 text-gray-400 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className="border-t border-(--line) px-6 py-6 sm:px-8">
+            <p className="font-mono text-xs tracking-widest text-gray-500 uppercase">Best fit for</p>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {["Backend engineering", "Integrations & workflows", "Applied AI", "Full-stack product"].map((fit) => (
+                <li
+                  key={fit}
+                  className="rounded-full bg-indigo-500/10 px-3 py-1 text-[13px] font-medium text-indigo-700 ring-1 ring-indigo-500/20 ring-inset dark:text-indigo-300"
+                >
+                  {fit}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-auto flex items-center gap-3 border-t border-(--line) px-6 py-5 sm:px-8">
+            <Clock className="size-4 text-gray-500" />
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              It's <span className="font-medium text-gray-950 dark:text-white">{time}</span> in {profile.location} (UTC+5)
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.08} className="bg-(--site-bg)">
+          <ContactForm />
+        </Reveal>
+      </div>
+    </Section>
   );
 }

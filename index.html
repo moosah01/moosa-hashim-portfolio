@@ -1,13 +1,80 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html>
+<html lang="en" class="dark antialiased">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>Muhammad Moosa Hashim — Software Engineer</title>
+    <meta
+      name="description"
+      content="Software engineer building AI-orchestrated workflows, .NET services and event-driven pipelines. 3+ years shipping across fintech, real-estate SaaS and product. Based in Karachi, open to new opportunities."
+    />
+    <meta name="author" content="Muhammad Moosa Hashim" />
+    <meta name="theme-color" content="#030712" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="__SITE_URL__/" />
+
+    <!-- Open Graph / social previews -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Moosa Hashim" />
+    <meta property="og:title" content="Muhammad Moosa Hashim — Software Engineer" />
+    <meta
+      property="og:description"
+      content="AI workflows, .NET services and event-driven pipelines — shipped at scale. $5M+/day through Kafka, 150% revenue growth supported, 90% less DB growth."
+    />
+    <meta property="og:url" content="__SITE_URL__/" />
+    <meta property="og:image" content="__SITE_URL__/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Muhammad Moosa Hashim — Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="AI workflows, .NET services and event-driven pipelines — shipped at scale."
+    />
+    <meta name="twitter:image" content="__SITE_URL__/og.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Muhammad Moosa Hashim",
+        "alternateName": "Moosa Hashim",
+        "jobTitle": "Software Engineer",
+        "worksFor": { "@type": "Organization", "name": "Spursol | ValueLink" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Institute of Business Administration, Karachi" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Karachi", "addressCountry": "PK" },
+        "email": "mailto:moosah01@gmail.com",
+        "url": "__SITE_URL__/",
+        "sameAs": ["https://www.linkedin.com/in/moosahashim/", "https://github.com/moosah01"]
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Apply the saved theme before first paint (dark by default). -->
+    <script>
+      try {
+        if (localStorage.getItem("theme") === "light") {
+          document.documentElement.classList.remove("dark");
+          document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff");
+        }
+      } catch (e) {}
+    </script>
   </head>
-  <body class="bg-white text-black">
+  <body>
     <div id="root"></div>
+    <noscript>
+      <p style="padding: 2rem; font-family: system-ui">
+        Muhammad Moosa Hashim — Software Engineer. Email: moosah01@gmail.com ·
+        LinkedIn: linkedin.com/in/moosahashim · GitHub: github.com/moosah01
+      </p>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
