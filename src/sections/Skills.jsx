@@ -23,9 +23,9 @@ export default function Skills() {
       index="05"
       eyebrow="Skills"
       tone="amber"
-      annotation="stack.push(...whateverTheProblemNeeds);"
-      title="The toolbox — and the habit of adding to it."
-      intro="Grouped by what they're for. Highlighted tools are the ones I use every day."
+      annotation="// languages, platforms, practices"
+      title="Technical skills."
+      intro="Grouped by area of work. Highlighted technologies are part of my current role at Spursol."
     >
       <div className="line-y grid gap-px bg-(--line) sm:grid-cols-2 lg:grid-cols-3">
         {skillGroups.map((group, i) => (
@@ -61,10 +61,10 @@ export default function Skills() {
               style={{ background: "radial-gradient(closest-side, rgb(139 92 246 / 0.35), transparent)" }}
             />
             <div>
-              <h3 className="text-gradient animate-shimmer text-lg font-semibold tracking-tight">Not on the list?</h3>
+              <h3 className="text-gradient animate-shimmer text-lg font-semibold tracking-tight">Different stack? Let's talk.</h3>
               <p className="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">
-                Point me at it. I picked up Kafka, Camel K and Groovy on the job, then C#/.NET and Temporal — and was
-                shipping in each within weeks.
+                My work has moved from Kafka and Camel K integrations to .NET services and Temporal workflows.
+                I'm comfortable learning a new stack when the role calls for it.
               </p>
             </div>
             <a

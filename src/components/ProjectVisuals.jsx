@@ -150,7 +150,7 @@ function LmsVisual() {
         </div>
         <div className="p-4">
           <p className="text-xs font-semibold">My courses</p>
-          <p className="font-mono text-[10px] text-gray-400">10K+ learners · 100+ APIs</p>
+          <p className="font-mono text-[10px] text-gray-400">Designed for 10K+ users · 100+ APIs</p>
           <div className="mt-3 space-y-3">
             {courses.map((course, i) => (
               <div key={course.name}>

@@ -89,9 +89,9 @@ export default function Experience() {
       index="02"
       eyebrow="Experience"
       tone="violet"
-      annotation="experience.sort((a, b) => b.impact - a.impact);"
-      title="Where I've shipped — and what changed because of it."
-      intro="Four roles, four very different stacks: banking integrations, fintech product, real-estate SaaS and my own company. The constant is measurable outcomes."
+      annotation="// roles, responsibilities, results"
+      title="Experience and results."
+      intro="Backend engineering at Spursol and Techlogix, preceded by product ownership and entrepreneurship. Here's what I was responsible for and what improved."
     >
       <div ref={listRef} className="relative">
         {/* timeline rail + comet */}

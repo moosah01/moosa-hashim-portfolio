@@ -113,9 +113,9 @@ export default function Contact() {
       index="07"
       eyebrow="Contact"
       tone="indigo"
-      annotation={'await hire("moosa"); // → 200 OK'}
-      title="Let's build something that lasts."
-      intro="Hiring for a role, stuck on a hard integration problem or need a product shipped? My inbox is open — I'd love to hear what you're working on."
+      annotation="// start a conversation"
+      title="Have a role in mind?"
+      intro="I'm open to software engineering opportunities in backend systems, integrations and applied AI. Tell me about the team, the role and the problems you'd want me to take on."
     >
       <div className="line-y grid gap-px bg-(--line) lg:grid-cols-2">
         <Reveal className="flex flex-col bg-(--site-bg)">

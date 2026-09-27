@@ -12,10 +12,10 @@ const heading = {
   index: "04",
   eyebrow: "Journey",
   tone: "emerald",
-  annotation: "while (alive) { learn(); build(); ship(); }",
-  title: "A new stack at every stop. Shipped at every one.",
+  annotation: "// education, business, engineering",
+  title: "How I got here.",
   intro:
-    "I learn by reading the docs, building something real and shipping it — with AI as a sidekick, not a crutch. Here's how the toolbox grew.",
+    "From running a business and launching a fintech product to building banking integrations and backend services. Each role added a different view of how software serves a business.",
 };
 
 function Milestone({ item, index }) {
@@ -61,7 +61,7 @@ function Milestone({ item, index }) {
           }}
           className="group mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-sky-600 dark:text-sky-400"
         >
-          Hand me a stack
+          Discuss a role
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
         </a>
       )}

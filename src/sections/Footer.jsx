@@ -23,8 +23,8 @@ export default function Footer() {
             </span>
           </div>
           <p className="mt-4 max-w-sm text-sm/6 text-gray-600 dark:text-gray-400">
-            Software engineer building systems that scale, automate and just work. Designed and built with React,
-            Tailwind CSS and Framer Motion — visual language inspired by tailwindcss.com.
+            Software engineer working on backend services, system integrations and workflow automation.
+            Based in Karachi, Pakistan.
           </p>
           <p className="mt-4 flex items-center gap-2 text-sm text-gray-500">
             Press <Kbd>{isMac ? "⌘K" : "Ctrl K"}</Kbd> for quick actions
@@ -79,7 +79,7 @@ export default function Footer() {
 
       <div className="line-y flex flex-col gap-2 px-4 py-6 font-mono text-xs text-gray-500 sm:flex-row sm:justify-between sm:px-2">
         <p>© {new Date().getFullYear()} {profile.name}</p>
-        <p>Karachi, PK · built with curiosity & caffeine</p>
+        <p>Built with React · Design inspired by tailwindcss.com</p>
       </div>
     </footer>
   );

@@ -88,9 +88,9 @@ export default function Beyond() {
       index="06"
       eyebrow="Beyond"
       tone="pink"
-      annotation="const life = { craft, community, curiosity };"
-      title="Beyond the code."
-      intro="Education, leadership and community work — the parts of my story that taught me to own outcomes and lead people."
+      annotation="// education + community"
+      title="Outside the engineering role."
+      intro="My education, developer talks and community work, including volunteer operations and welfare campaigns."
     >
       <div className="line-y grid gap-px bg-(--line) lg:grid-cols-3">
         <Reveal className="bg-(--site-bg) lg:col-span-2">

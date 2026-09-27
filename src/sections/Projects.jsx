@@ -122,9 +122,9 @@ export default function Projects() {
       index="03"
       eyebrow="Projects"
       tone="fuchsia"
-      annotation="projects.filter((p) => p.shipped).map(tellTheStory);"
-      title="Selected work, from production systems to side quests."
-      intro="Case studies from my day jobs alongside things I've built end to end. Drag, swipe or use your arrow keys to explore."
+      annotation="// selected implementations"
+      title="Systems I've built and improved."
+      intro="Workflow automation, banking integrations and applications I've worked on, plus a couple of games. Drag, swipe or use the arrow buttons to explore."
     >
       <Reveal className="line-y py-4">
         <div

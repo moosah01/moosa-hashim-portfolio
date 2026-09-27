@@ -26,11 +26,9 @@ export const navLinks = [
 ];
 
 export const heroWords = [
-  "scales.",
-  "ships.",
-  "moves money.",
-  "thinks.",
-  "just works.",
+  "backend services.",
+  "banking integrations.",
+  "AI workflows.",
 ];
 
 export const impactStats = [
@@ -38,45 +36,45 @@ export const impactStats = [
     value: 5,
     prefix: "$",
     suffix: "M+",
-    label: "processed daily through Kafka pipelines I ran",
+    label: "in daily transactions through a Kafka pipeline I managed",
   },
   {
-    value: 150,
+    value: 70,
     suffix: "%",
-    label: "half-year revenue growth on a platform I engineer",
+    label: "reduction in integration failure rates at Techlogix",
   },
   {
     value: 90,
     suffix: "%",
-    label: "less daily database growth after a storage re-architecture",
+    label: "reduction in daily database growth at Spursol",
   },
   {
     value: 700,
     suffix: "K+",
-    label: "customer profiles migrated between legacy & modern systems",
+    label: "customer profiles migrated between legacy and modern systems",
   },
 ];
 
 export const whyMe = [
   {
     icon: "layers",
-    title: "Stack-agnostic by design",
-    body: "Java & C++ at university, MERN for products, Kafka & Camel K for banking, C#/.NET & Temporal for SaaS. Four ecosystems — productive in each within weeks.",
+    title: "Integration experience",
+    body: "I've connected banking systems with Kafka and Camel K, migrated customer data and built .NET client integrations. The work starts with understanding both sides of the connection.",
   },
   {
     icon: "gauge",
-    title: "Impact you can measure",
-    body: "I track outcomes, not tickets: 70% fewer integration failures, 90% less database growth, 25% lower storage & execution costs.",
+    title: "Measurable improvements",
+    body: "My work reduced integration failures by 70% at Techlogix. At Spursol, I cut daily database growth by 90% and storage and execution costs by 25%.",
   },
   {
     icon: "sparkles",
-    title: "AI as a force multiplier",
-    body: "I ship LLM features with guardrails — Azure OpenAI ranking, AI voice follow-ups, and a migration agent gated by security, test & build checks.",
+    title: "Applied AI",
+    body: "I've built appointment workflows using Azure OpenAI and an AI migration agent with automated security, test and build checks. Useful automation, with checks built in.",
   },
   {
     icon: "rocket",
-    title: "Owner's mindset",
-    body: "Co-founded a company, led a product launch for 70K+ users and ran NGO operations. I take problems end to end.",
+    title: "Business context",
+    body: "I've led a fintech launch for 70K+ users and co-founded a business serving 1,200+ clients. That experience helps me connect technical decisions to customer and operational needs.",
   },
 ];
 
@@ -159,7 +157,7 @@ export const experience = [
 export const projects = [
   {
     id: "inspection-workflow",
-    kind: "Case study · Spursol",
+    kind: "Work project · Spursol",
     title: "AI inspection follow-up workflow",
     description:
       "Temporal-orchestrated follow-ups over email, SMS and AI voice calls, with Azure OpenAI ranking validated appointments under tenant-scoped booking rules.",
@@ -170,10 +168,10 @@ export const projects = [
   },
   {
     id: "migration-agent",
-    kind: "Case study · Spursol",
+    kind: "Work project · Spursol",
     title: "Repository-aware AI migration agent",
     description:
-      "Migrated 65+ repositories from ADO.NET to Dapper, with an AI agent that proposes changes and only merges past automated security, test and build gates.",
+      "Modernized 65+ data repositories from ADO.NET to Dapper, fixed IDOR/RBAC vulnerabilities and built an AI migration agent with automated security, test and build checks.",
     outcomes: ["65+ repositories", "IDOR/RBAC fixes"],
     stack: ["C#", "Dapper", "LLM agents", "CI gates"],
     visual: "migration",
@@ -181,7 +179,7 @@ export const projects = [
   },
   {
     id: "kafka-pipeline",
-    kind: "Case study · Techlogix",
+    kind: "Work project · Techlogix",
     title: "Cross-bank payments pipeline",
     description:
       "A Kafka messaging backbone linking client systems with 200+ global banks for transfers, payments and prepaid services.",
@@ -195,7 +193,7 @@ export const projects = [
     kind: "Final-year project · Team lead",
     title: "Learning Management System",
     description:
-      "An LMS designed for 10K+ users: NoSQL schema, security controls and 100+ REST APIs over 50K+ records, with Cloudinary compression and Vercel deploys. Voted a top-3 FYP of 2023.",
+      "Led backend development for an LMS designed for 10K+ users, with a NoSQL schema, access controls and 100+ REST APIs supporting 50K+ records. Cloudinary compression reduced file sizes by 40%.",
     outcomes: ["100+ REST APIs", "40% smaller files"],
     stack: ["MongoDB", "Express", "React", "Node.js", "Cloudinary"],
     visual: "lms",
@@ -217,7 +215,7 @@ export const projects = [
     kind: "Side project · Solo dev",
     title: "Indie games in C++ & Flutter",
     description:
-      "Shipped a top-down space shooter and a 3-level platformer — hand-rolled physics, enemy AI and an MVC structure built for easy expansion.",
+      "Built a top-down space shooter and a three-level platformer with custom physics, enemy AI and an MVC structure. Occasionally, the requirements include spaceships.",
     outcomes: ["2 games shipped", "Custom physics & AI"],
     stack: ["C++", "SDL2", "Flutter Flame"],
     visual: "game",
@@ -230,57 +228,57 @@ export const journey = [
     year: "2017",
     title: "Leading 1,700+ students",
     org: "Nixor College · A Levels",
-    body: "Vice President of the student body. First lesson in shipping: people and deadlines don't wait.",
+    body: "Served as student body Vice President, representing 1,700+ students.",
     learned: ["Leadership", "Public speaking", "Event ops"],
   },
   {
     year: "2019",
     title: "Computer science at IBA",
     org: "Institute of Business Administration",
-    body: "Fundamentals first — data structures, systems and a lot of C++ and Java. Graduated with a top-3 FYP.",
+    body: "Studied computer science and led backend development for a learning management system as my final-year project.",
     learned: ["C++", "Java", "Python", "SQL", "OOP"],
   },
   {
     year: "2020",
     title: "Co-founded a company",
     org: "Commuovere Tours",
-    body: "Built a student-run travel agency to PKR 8M+ in revenue. Learned sales, ops and how businesses actually make money.",
+    body: "Co-founded a student-run travel agency that generated PKR 8M+ in revenue across 1,200+ clients.",
     learned: ["Sales", "Operations", "Growth"],
   },
   {
     year: "2022",
     title: "Product owner at a fintech",
     org: "Hilal Invest",
-    body: "Launched Pakistan's first digital Islamic investment platform. Spoke at Google-endorsed Flutter Festival Karachi.",
+    body: "Led the launch of a digital Islamic investment platform for 70K+ users and coordinated integrations with seven asset management companies.",
     learned: ["Scrum", "Jira", "Flutter", "UX research"],
   },
   {
     year: "2023",
     title: "Full-stack & games",
     org: "FYP · side projects",
-    body: "Led an LMS for 10K+ users, shipped an attendance platform to 10 warehouses, and built games in SDL2 and Flame.",
+    body: "Built an LMS designed for 10K+ users, an attendance system used across 10 warehouses and games in SDL2 and Flutter Flame.",
     learned: ["MongoDB", "Express", "React", "Node.js", "SDL2"],
   },
   {
     year: "2023",
-    title: "Banking-grade integration",
+    title: "Banking integrations",
     org: "Techlogix",
-    body: "Picked up Kafka, Camel K, XSLT and Groovy on the job and ran pipelines moving $5M+ a day across 200+ banks.",
+    body: "Managed a Kafka pipeline connecting client systems with 200+ banks and handling $5M+ in daily transactions. Migrated 700K+ customer profiles between systems.",
     learned: ["Kafka", "Camel K", "Karavan", "XSLT", "Groovy", "Azure"],
   },
   {
     year: "2025",
-    title: "AI-native SaaS engineering",
+    title: "Backend services and AI workflows",
     org: "Spursol | ValueLink",
-    body: "Switched to C#/.NET and Temporal, and put LLMs into production workflows for a multi-tenant real-estate platform.",
+    body: "Built .NET services and Temporal inspection workflows for a multi-tenant real-estate platform, alongside data access and document storage improvements.",
     learned: ["C#", ".NET", "Temporal", "Dapper", "Azure OpenAI"],
   },
   {
     year: "Next",
-    title: "Whatever you need",
-    org: "Currently exploring",
-    body: "Rust, agentic AI tooling and durable distributed workflows. Hand me an unfamiliar stack — I'll be shipping in it soon.",
-    learned: ["Rust", "AI agents", "Distributed systems"],
+    title: "The next engineering role",
+    org: "Open to opportunities",
+    body: "Looking for a team where I can contribute to backend systems, integrations and applied AI, with responsibility for the work from implementation through production.",
+    learned: ["Backend engineering", "Integrations", "Applied AI"],
     next: true,
   },
 ];
@@ -288,7 +286,7 @@ export const journey = [
 export const skillGroups = [
   {
     title: "Languages",
-    blurb: "Typed or dynamic — whatever the problem needs.",
+    blurb: "Languages used across professional work and projects.",
     items: [
       "C#",
       "TypeScript",
@@ -302,7 +300,7 @@ export const skillGroups = [
   },
   {
     title: "Backend & APIs",
-    blurb: "Services that are secure, observable and boring in production.",
+    blurb: "Application services, data access and API development.",
     items: [
       ".NET",
       "Node.js",
@@ -315,12 +313,12 @@ export const skillGroups = [
   },
   {
     title: "Integration & workflows",
-    blurb: "Moving data and money reliably between systems.",
+    blurb: "Messaging, system integration and workflow orchestration.",
     items: ["Apache Kafka", "Temporal", "Apache Camel K", "Karavan", "XSLT", "Groovy", "YAML"],
   },
   {
     title: "Cloud & data",
-    blurb: "Storage, databases and deploys that stay lean.",
+    blurb: "Database design, document storage and deployment.",
     items: [
       "Azure",
       "Azure Blob Storage",
@@ -333,22 +331,22 @@ export const skillGroups = [
   },
   {
     title: "AI engineering",
-    blurb: "LLMs in production — with guardrails.",
-    items: ["Azure OpenAI", "LLM agents", "AI voice workflows", "Eval & CI gates"],
+    blurb: "Appointment ranking, voice follow-ups and migration agents.",
+    items: ["Azure OpenAI", "LLM agents", "AI voice workflows", "Automated validation"],
   },
   {
     title: "Frontend & mobile",
-    blurb: "Clean, responsive interfaces — like this one.",
+    blurb: "Web and mobile applications, plus game development.",
     items: ["React", "Angular", "Tailwind CSS", "Flutter", "Flame", "SDL2"],
   },
   {
     title: "Security & quality",
-    blurb: "Fixing the bugs that make headlines.",
+    blurb: "Access control, tenant boundaries and automated checks.",
     items: ["IDOR / RBAC", "Tenant isolation", "Automated test & build gates", "Data integrity"],
   },
   {
     title: "Ways of working",
-    blurb: "Engineer with a product owner's instincts.",
+    blurb: "Product planning, delivery coordination and technical communication.",
     items: ["Scrum", "Jira", "Product ownership", "Stakeholder management", "Tech talks"],
   },
 ];
@@ -360,7 +358,7 @@ export const education = [
     degree: "BS Computer Science",
     period: "2019 — 2023",
     logo: "iba",
-    highlight: "Top-3 final-year project of 2023",
+    highlight: "Final-year project: LMS team lead",
     awards: [
       "Global Futures Fellowship Scholarship",
       "Featured on the Dean's Wall",
@@ -395,7 +393,7 @@ export const leadership = [
     stats: [
       { value: "120K+", label: "masks distributed" },
       { value: "20M+", label: "campaign impressions" },
-      { value: "200%", label: "fundraising outreach" },
+      { value: "200%", label: "increase in fundraising outreach" },
     ],
     icon: "heart",
   },

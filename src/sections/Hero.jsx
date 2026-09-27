@@ -164,7 +164,7 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        <Annotation>text-5xl tracking-tighter text-balance lg:text-8xl</Annotation>
+        <Annotation>// backend engineering + integrations</Annotation>
 
         <motion.h1
           initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
@@ -172,11 +172,11 @@ export default function Hero() {
           transition={{ duration: 1, ease, delay: 0.1 }}
           className="line-y px-4 text-[2.6rem]/[1.08] tracking-tighter text-balance max-lg:font-medium sm:px-2 sm:text-6xl/[1.05] lg:text-7xl/[1.02] xl:text-8xl/[1] dark:[text-shadow:0_2px_32px_rgb(3_7_18/0.55)]"
         >
-          {profile.shortName} builds software that
+          {profile.shortName} builds
           <RotatingWord />
         </motion.h1>
 
-        <Annotation>text-lg/8 text-gray-400 max-w-2xl</Annotation>
+        <Annotation />
 
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -185,8 +185,8 @@ export default function Hero() {
           className="line-y max-w-2xl px-4 text-lg/8 text-gray-600 sm:px-2 dark:text-gray-300/90 dark:[text-shadow:0_1px_18px_rgb(3_7_18/0.8)]"
         >
           Software engineer at <strong className="font-medium text-gray-950 dark:text-white">Spursol | ValueLink</strong>,
-          building AI-orchestrated workflows and .NET services for a multi-tenant real-estate platform. 3+ years across
-          banking integrations, fintech and SaaS — a new stack at every stop, shipped at every one.
+          building .NET services and AI-assisted workflows for real-estate operations. Previously at Techlogix,
+          I managed banking integrations handling $5M+ in daily transactions. I work where business rules meet production code.
         </motion.p>
 
         <Annotation />
@@ -250,7 +250,7 @@ export default function Hero() {
       {/* Toolbox marquee */}
       <div className="mt-16 sm:mt-20">
         <p className="px-4 text-center font-mono text-xs tracking-widest text-gray-500 uppercase">
-          Tools of the trade
+          Technologies I work with
         </p>
         <div className="line-y mt-5 py-6">
           <div className="mask-fade-x space-y-3">

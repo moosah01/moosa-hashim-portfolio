@@ -72,7 +72,6 @@ const P = "text-gray-500";
 const F = "text-violet-300";
 const V = "text-gray-200";
 const N = "text-amber-300";
-const C = "text-gray-500 italic";
 
 const codeLines = [
   [[K, "import"], [P, " { "], [V, "defineEngineer"], [P, " } "], [K, "from"], [S, ' "@moosa/core"'], [P, ";"]],
@@ -83,12 +82,12 @@ const codeLines = [
   [[V, "  company"], [P, ": "], [S, '"Spursol | ValueLink"'], [P, ","]],
   [[V, "  experience"], [P, ": "], [S, '"3+ years"'], [P, ","]],
   [[V, "  stack"], [P, ": ["], [S, '"C#/.NET"'], [P, ", "], [S, '"Temporal"'], [P, ", "], [S, '"Kafka"'], [P, ", "], [S, '"Azure"'], [P, "],"]],
-  [[V, "  superpowers"], [P, ": ["]],
-  [[S, '    "learns any stack in weeks"'], [P, ","]],
-  [[S, '    "ships AI with guardrails"'], [P, ","]],
-  [[S, '    "owns outcomes end to end"'], [P, ","]],
+  [[V, "  focus"], [P, ": ["]],
+  [[S, '    "backend services"'], [P, ","]],
+  [[S, '    "system integrations"'], [P, ","]],
+  [[S, '    "workflow automation"'], [P, ","]],
   [[P, "  ],"]],
-  [[V, "  learning"], [P, ": "], [N, "Infinity"], [P, ","], [C, " // never done"]],
+  [[V, "  background"], [P, ": "], [S, '"engineering + product"'], [P, ","]],
   [[V, "  openToWork"], [P, ": "], [N, "true"], [P, ","]],
   [[P, "});"]],
 ];
@@ -144,9 +143,9 @@ export default function About() {
       index="01"
       eyebrow="About"
       tone="sky"
-      annotation="const moosa = new Engineer({ curiosity: Infinity });"
-      title="I learn fast, build carefully, and own the outcome."
-      intro="I'm a software engineer from Karachi with a CS degree from IBA and a habit of gravitating to the hardest problem in the room. I learn by going straight to the docs, building something real and using AI as a practical sidekick — which is how I've been productive across four very different stacks in three years."
+      annotation="// engineering + product experience"
+      title="Backend engineer. Product perspective."
+      intro="I'm a software engineer based in Karachi and a computer science graduate from IBA. My work spans banking integrations, data migrations and real-estate software. Before engineering, I worked in product and co-founded a travel business. I like understanding why a feature matters as much as how it works."
     >
       <div className="line-y grid gap-px bg-(--line) lg:grid-cols-12">
         <Reveal className="bg-(--site-bg) p-2 lg:col-span-5">

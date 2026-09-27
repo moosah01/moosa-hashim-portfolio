@@ -52,7 +52,7 @@ export function SectionHeading({ id, index, eyebrow, tone = "sky", annotation, t
       </h2>
       {intro && (
         <>
-          <Annotation>text-base/7 text-gray-400</Annotation>
+          <Annotation />
           <p className="line-y max-w-2xl px-4 text-base/7 text-gray-600 sm:px-2 dark:text-gray-400">
             {intro}
           </p>
