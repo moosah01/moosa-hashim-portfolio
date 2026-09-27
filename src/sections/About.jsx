@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { Gauge, Layers, MapPin, Rocket, Sparkles } from "lucide-react";
-import portrait from "../assets/images/moosa-portrait-new.jpg";
+import portrait from "../assets/images/MoosaHotPot.png";
 import { Reveal, Section, SpotlightCard } from "../components/ui";
 import { useLocalTime } from "../lib/hooks";
 import { profile, whyMe } from "../data/portfolio";
@@ -46,8 +46,8 @@ function Portrait() {
           src={portrait}
           alt="Muhammad Moosa Hashim"
           loading="lazy"
-          width="3456"
-          height="4608"
+          width="1086"
+          height="1448"
           className="absolute inset-0 size-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-950/85 via-gray-950/10 to-transparent" />
