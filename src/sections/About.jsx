@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { Gauge, Layers, MapPin, Rocket, Sparkles } from "lucide-react";
-import portrait from "../assets/images/moosa-portrait.jpg";
+import portrait from "../assets/images/moosa-portrait-new.jpg";
 import { Reveal, Section, SpotlightCard } from "../components/ui";
 import { useLocalTime } from "../lib/hooks";
 import { profile, whyMe } from "../data/portfolio";
@@ -40,15 +40,15 @@ function Portrait() {
         onPointerMove={onMove}
         onPointerLeave={onLeave}
         style={{ rotateX, rotateY, transformPerspective: 900 }}
-        className="relative h-full min-h-[26rem] overflow-hidden rounded-xl bg-gray-900"
+        className="relative aspect-[3/4] overflow-hidden rounded-xl bg-gray-900 lg:h-full"
       >
         <img
           src={portrait}
           alt="Muhammad Moosa Hashim"
           loading="lazy"
-          width="800"
-          height="1000"
-          className="absolute inset-0 size-full object-cover object-[50%_25%]"
+          width="3456"
+          height="4608"
+          className="absolute inset-0 size-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-950/85 via-gray-950/10 to-transparent" />
         <div className="absolute top-3 left-3 flex items-center gap-2 rounded-full bg-gray-950/50 px-3 py-1 font-mono text-[11px] text-white/90 ring-1 ring-white/15 backdrop-blur-md">
