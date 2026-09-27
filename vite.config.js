@@ -1,6 +1,8 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 
 // Absolute site URL for canonical / Open Graph tags. Set VITE_SITE_URL to a
 // custom domain, otherwise Vercel's production URL is used automatically.
@@ -13,7 +15,12 @@ const siteUrl = (
 
 const siteUrlPlugin = () => ({
   name: "site-url",
-  transformIndexHtml: (html) => html.replaceAll("__SITE_URL__", siteUrl),
+  transformIndexHtml: (html) => {
+    const imageVersion = createHash("sha256")
+      .update(readFileSync(new URL("./public/og.png", import.meta.url)))
+      .digest("hex").slice(0, 12);
+    return html.replaceAll("__SITE_URL__", siteUrl).replaceAll("__OG_VERSION__", imageVersion);
+  },
 });
 
 // https://vite.dev/config/
