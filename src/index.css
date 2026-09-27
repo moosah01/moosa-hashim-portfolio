@@ -234,6 +234,14 @@
   mask-image: linear-gradient(to bottom, black 60%, transparent);
 }
 
+/* Fades the hero cutout into the background at the bottom and sides. */
+@utility mask-portrait {
+  mask-image: linear-gradient(to bottom, #000 48%, transparent 94%),
+    linear-gradient(to right, transparent, #000 20%, #000 85%, transparent);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+}
+
 @utility scrollbar-none {
   scrollbar-width: none;
   &::-webkit-scrollbar {

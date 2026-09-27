@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, ArrowRight, Copy } from "lucide-react";
-import portrait from "../assets/images/moosa-portrait.jpg";
+import cutout from "../assets/images/moosa-cutout.webp";
 import { Annotation, CountUp } from "../components/ui";
 import { btnPrimary, btnSecondary } from "../lib/styles";
 import { cn } from "../lib/cn";
@@ -39,8 +39,10 @@ function RotatingWord() {
     return () => clearInterval(id);
   }, []);
 
+  // The clip box and the gradient's paint box both extend below the baseline
+  // (pb + matching -mb) so descenders like j / y / g aren't cut off.
   return (
-    <span className="relative block h-[1.12em] overflow-hidden pb-[0.12em]">
+    <span className="relative block overflow-hidden pb-[0.22em]">
       <span className="sr-only">{heroWords[0]}</span>
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.span
@@ -50,7 +52,7 @@ function RotatingWord() {
           animate={{ y: "0%", opacity: 1, filter: "blur(0px)" }}
           exit={{ y: "-90%", opacity: 0, filter: "blur(10px)" }}
           transition={{ duration: 0.7, ease }}
-          className="text-gradient inline-block animate-shimmer"
+          className="text-gradient -mb-[0.22em] inline-block animate-shimmer pr-[0.08em] pb-[0.22em]"
         >
           {heroWords[index]}
         </motion.span>
@@ -59,23 +61,46 @@ function RotatingWord() {
   );
 }
 
-function PhotoPill() {
+// Large grayscale cutout that sits behind the hero copy, faded into space.
+function Portrait({ progress }) {
+  const reduce = useReducedMotion();
+  const y = useTransform(progress, [0, 1], [0, 160]);
+  const opacity = useTransform(progress, [0, 0.85], [1, 0.1]);
+
   return (
-    <motion.span
-      initial={{ width: 0, opacity: 0 }}
-      animate={{ width: "1.55em", opacity: 1 }}
-      transition={{ delay: 0.5, duration: 0.9, ease }}
-      className="relative mx-[0.12em] inline-block h-[0.78em] -translate-y-[0.06em] overflow-hidden rounded-full align-middle ring-1 ring-gray-950/10 dark:ring-white/20"
+    <motion.div
+      aria-hidden="true"
+      style={reduce ? undefined : { y, opacity }}
+      className="pointer-events-none absolute -z-[5] aspect-[1086/1448] max-lg:top-4 max-lg:-right-[16%] max-lg:h-[min(128vw,36rem)] lg:-right-10 lg:bottom-0 lg:h-[calc(100%+4.5rem)] xl:-right-6"
     >
-      <img
-        src={portrait}
-        alt="Portrait of Moosa Hashim"
-        width="800"
-        height="1000"
-        fetchPriority="high"
-        className="absolute inset-0 size-full object-cover object-[50%_32%]"
-      />
-    </motion.span>
+      <motion.div
+        initial={{ opacity: 0, scale: 1.06, filter: "blur(14px)" }}
+        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+        transition={{ duration: 1.6, ease, delay: 0.2 }}
+        className="relative size-full"
+      >
+        {/* rim light behind the head */}
+        <div
+          className="absolute top-[4%] left-[12%] size-[76%] rounded-full opacity-70 blur-3xl dark:opacity-100"
+          style={{ background: "radial-gradient(closest-side, rgb(139 92 246 / 0.35), rgb(56 189 248 / 0.12) 60%, transparent)" }}
+        />
+        <div className="mask-portrait absolute inset-0 max-lg:opacity-55">
+          <img
+            src={cutout}
+            alt=""
+            width="1086"
+            height="1448"
+            fetchPriority="high"
+            className="size-full object-contain grayscale-100 contrast-110 brightness-[1.02] dark:brightness-[0.62]"
+          />
+          {/* faint violet/sky tint, clipped to the cutout's own alpha */}
+          <div
+            className="absolute inset-0 bg-gradient-to-br from-sky-400 via-violet-500 to-fuchsia-500 opacity-15 mix-blend-color dark:opacity-25"
+            style={{ maskImage: `url(${cutout})`, maskSize: "100% 100%", WebkitMaskImage: `url(${cutout})`, WebkitMaskSize: "100% 100%" }}
+          />
+        </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -111,88 +136,94 @@ function MarqueeRow({ items, reverse }) {
 const statBorders = ["", "border-l", "max-lg:border-t lg:border-l", "border-l max-lg:border-t"];
 
 export default function Hero() {
+  const introRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: introRef, offset: ["start start", "end start"] });
+
   return (
     <section id="top" aria-label="Introduction" className="relative pt-6 sm:pt-10">
       <Aurora />
 
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease }}
-        className="line-y flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-2 sm:px-2"
-      >
-        <span className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-1 text-sm/6 font-medium text-emerald-700 ring-1 ring-emerald-500/20 ring-inset dark:text-emerald-300">
-          <span className="relative flex size-2">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+      <div ref={introRef} className="relative">
+        <Portrait progress={scrollYProgress} />
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease }}
+          className="line-y flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-2 sm:px-2"
+        >
+          <span className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-1 text-sm/6 font-medium text-emerald-700 ring-1 ring-emerald-500/20 ring-inset dark:text-emerald-300">
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+            </span>
+            Open to new opportunities
           </span>
-          Open to new opportunities
-        </span>
-        <span className="font-mono text-xs/6 text-gray-500">
-          {profile.role} @ {profile.company} · {profile.location}
-        </span>
-      </motion.div>
+          <span className="font-mono text-xs/6 text-gray-500">
+            {profile.role} @ {profile.company} · {profile.location}
+          </span>
+        </motion.div>
 
-      <Annotation>text-5xl tracking-tighter text-balance lg:text-8xl</Annotation>
+        <Annotation>text-5xl tracking-tighter text-balance lg:text-8xl</Annotation>
 
-      <motion.h1
-        initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 1, ease, delay: 0.1 }}
-        className="line-y px-4 text-[2.6rem]/[1.08] tracking-tighter text-balance max-lg:font-medium sm:px-2 sm:text-6xl/[1.05] lg:text-7xl/[1.02] xl:text-8xl/[1]"
-      >
-        {profile.shortName}
-        <PhotoPill /> builds software that
-        <RotatingWord />
-      </motion.h1>
-
-      <Annotation>text-lg/8 text-gray-400 max-w-2xl</Annotation>
-
-      <motion.p
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease, delay: 0.25 }}
-        className="line-y max-w-2xl px-4 text-lg/8 text-gray-600 sm:px-2 dark:text-gray-400"
-      >
-        Software engineer at <strong className="font-medium text-gray-950 dark:text-white">Spursol | ValueLink</strong>,
-        building AI-orchestrated workflows and .NET services for a multi-tenant real-estate platform. 3+ years across
-        banking integrations, fintech and SaaS — a new stack at every stop, shipped at every one.
-      </motion.p>
-
-      <Annotation />
-
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease, delay: 0.35 }}
-        className="line-y flex flex-wrap items-center gap-3 px-4 py-3 sm:px-2"
-      >
-        <a
-          href="#contact"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToId("contact");
-          }}
-          className={cn(btnPrimary, "group")}
+        <motion.h1
+          initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1, ease, delay: 0.1 }}
+          className="line-y px-4 text-[2.6rem]/[1.08] tracking-tighter text-balance max-lg:font-medium sm:px-2 sm:text-6xl/[1.05] lg:text-7xl/[1.02] xl:text-8xl/[1] dark:[text-shadow:0_2px_32px_rgb(3_7_18/0.55)]"
         >
-          Let's talk
-          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-        </a>
-        <a href={profile.resume} download={profile.resumeFileName} className={cn(btnSecondary, "group")}>
-          Download résumé
-          <ArrowDown className="size-4 transition-transform group-hover:translate-y-0.5" />
-        </a>
-        <button
-          type="button"
-          onClick={copyEmail}
-          className="group hidden items-center gap-3 rounded-full py-2.5 pr-3 pl-4 font-mono text-[13px]/6 text-gray-500 transition hover:text-gray-950 sm:inline-flex dark:text-gray-400 dark:hover:text-white"
-          title="Copy email address"
+          {profile.shortName} builds software that
+          <RotatingWord />
+        </motion.h1>
+
+        <Annotation>text-lg/8 text-gray-400 max-w-2xl</Annotation>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease, delay: 0.25 }}
+          className="line-y max-w-2xl px-4 text-lg/8 text-gray-600 sm:px-2 dark:text-gray-300/90 dark:[text-shadow:0_1px_18px_rgb(3_7_18/0.8)]"
         >
-          <span className="text-sky-500 dark:text-sky-400">$</span>
-          {profile.email}
-          <Copy className="size-3.5 opacity-60 transition group-hover:opacity-100" />
-        </button>
-      </motion.div>
+          Software engineer at <strong className="font-medium text-gray-950 dark:text-white">Spursol | ValueLink</strong>,
+          building AI-orchestrated workflows and .NET services for a multi-tenant real-estate platform. 3+ years across
+          banking integrations, fintech and SaaS — a new stack at every stop, shipped at every one.
+        </motion.p>
+
+        <Annotation />
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease, delay: 0.35 }}
+          className="line-y flex flex-wrap items-center gap-3 px-4 py-3 sm:px-2"
+        >
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToId("contact");
+            }}
+            className={cn(btnPrimary, "group")}
+          >
+            Let's talk
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+          </a>
+          <a href={profile.resume} download={profile.resumeFileName} className={cn(btnSecondary, "group")}>
+            Download résumé
+            <ArrowDown className="size-4 transition-transform group-hover:translate-y-0.5" />
+          </a>
+          <button
+            type="button"
+            onClick={copyEmail}
+            className="group hidden items-center gap-3 rounded-full py-2.5 pr-3 pl-4 font-mono text-[13px]/6 text-gray-500 transition hover:text-gray-950 sm:inline-flex dark:text-gray-400 dark:hover:text-white"
+            title="Copy email address"
+          >
+            <span className="text-sky-500 dark:text-sky-400">$</span>
+            {profile.email}
+            <Copy className="size-3.5 opacity-60 transition group-hover:opacity-100" />
+          </button>
+        </motion.div>
+      </div>
 
       {/* Impact at a glance */}
       <div className="line-y mt-10 grid grid-cols-2 sm:mt-14 lg:grid-cols-4">
